@@ -104,3 +104,9 @@
 
 TOPページの例
 [![Image from Gyazo](https://i.gyazo.com/a810b2feba797d38bd0f722df0b725b7.png)](https://gyazo.com/a810b2feba797d38bd0f722df0b725b7)
+
+***
+
+## 画面遷移図
+
+[Figma](https://www.figma.com/design/7vOprCqpanPIMHVg1wnjK6/COSchest?node-id=0-1&t=Ar21r0uWeIRnZrLN-1)
