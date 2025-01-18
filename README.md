@@ -115,4 +115,4 @@ TOPページの例
 
 ## ER図
 
-[![Image from Gyazo](https://i.gyazo.com/f39dbb7fa0f6482c88d97b46408cdd1b.png)](https://gyazo.com/f39dbb7fa0f6482c88d97b46408cdd1b)
+[![Image from Gyazo](https://i.gyazo.com/1ba9b5d94a1cdb9e19d979b38627b281.png)](https://gyazo.com/1ba9b5d94a1cdb9e19d979b38627b281)
