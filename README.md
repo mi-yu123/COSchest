@@ -110,3 +110,9 @@ TOPページの例
 ## 画面遷移図
 
 [Figma](https://www.figma.com/design/7vOprCqpanPIMHVg1wnjK6/COSchest?node-id=0-1&t=Ar21r0uWeIRnZrLN-1)
+
+***
+
+## ER図
+
+[![Image from Gyazo](https://i.gyazo.com/1b5e5b7be8ce8e90931aaff7a56c35b7.png)](https://gyazo.com/1b5e5b7be8ce8e90931aaff7a56c35b7)
