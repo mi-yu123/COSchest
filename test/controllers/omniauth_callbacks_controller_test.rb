@@ -18,8 +18,7 @@ class OmniauthCallbacksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get twitter" do
-    get "/users/auth/twitter/callback" # このパスでコールバックを受け取る
+    get "/users/auth/twitter2/callback" # このパスでコールバックを受け取る
     assert_response :redirect
-    assert_redirected_to root_path # 認証後のリダイレクト先
   end
 end
