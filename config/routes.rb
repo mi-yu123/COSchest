@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "omniauth_callbacks/twitter", to: "omniauth_callbacks#twitter"
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,6 +12,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :users, only: %i[new create]
-  resource :login, only: %i[new create]
 end
