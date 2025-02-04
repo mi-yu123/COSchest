@@ -1,0 +1,24 @@
+<h1>衣装一覧</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @costumes.each do |costume| %>
+    <div class="border rounded-lg overflow-hidden">
+      <!-- 衣装の画像 -->
+      <%= link_to edit_costume_path(costume) do %>
+        <% if costume.image.attached? %>
+          <img src="<%= url_for(costume.image) %>" alt="<%= costume.character_name %>" class="w-full h-48 object-cover">
+        <% else %>
+          <img src="<%= asset_path('no_image.jpg') %>" alt="画像なし" class="w-full h-48 object-cover">
+        <% end %>
+      <% end %>
+
+      <!-- キャラクター名 -->
+      <div class="p-4">
+        <%= link_to costume.character_name, edit_costume_path(costume), class: "text-lg font-bold" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to '新規登録', new_costume_path, class: "btn btn-primary mt-6" %>
+<%= link_to '戻る', root_path, class: "btn btn-secondary mt-4" %>
