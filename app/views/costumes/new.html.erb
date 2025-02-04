@@ -1,0 +1,31 @@
+<h1>衣装の登録</h1>
+
+<%= form_with(model: @costume, local: true) do |form| %>
+  <!-- 衣装画像 -->
+  <div class="mb-4">
+    <%= form.label :image, "画像" %>
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
+
+  <!-- キャラクター名 -->
+  <div class="mb-4">
+    <%= form.label :character_name, "キャラクター名" %>
+    <%= form.text_field :character_name, class: "form-control" %>
+  </div>
+
+  <!-- 完成 or 未完成 -->
+  <div class="mb-4">
+    <%= form.label :status, "ステータス" %>
+    <%= form.select :status, Costume.statuses.keys.map { |status| [status.humanize, status] }, class: "form-control" %>
+  </div>
+
+  <!-- メモ -->
+  <div class="mb-4">
+    <%= form.label :memo, "メモ" %>
+    <%= form.text_area :memo, class: "form-control" %>
+  </div>
+
+  <%= form.submit '登録する', class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to '戻る', costumes_path, class: "btn btn-secondary mt-4" %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { 
+    omniauth_callbacks: 'omniauth_callbacks',
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,8 +20,8 @@ Rails.application.routes.draw do
 
   resources :costumes
   resources :wigs
-  resources :contacts
+  resources :contactlenses
   resources :tasks
-  resources :blogs
+  resources :articles
   resources :settings
 end

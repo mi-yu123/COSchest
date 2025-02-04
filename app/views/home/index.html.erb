@@ -3,9 +3,12 @@
     <div class="grid grid-cols-2 gap-4 md:grid-cols-3 max-w-3xl mx-auto">
       <%= link_to costumes_path, class: "block" do %>
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">衣装</div>
+          <div class="text-xl font-semibold text-center">
+            <i class="fas fa-tshirt"></i> <!-- アイコン -->
+            衣装
+          </div>
         </div>
-      <% end %>
+      <% end %>  
 
       <%= link_to wigs_path, class: "block" do %>
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
@@ -13,7 +16,7 @@
         </div>
       <% end %>
 
-      <%= link_to contacts_path, class: "block" do %>
+      <%= link_to contactlenses_path, class: "block" do %>
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
           <div class="text-xl font-semibold text-center">カラコン</div>
         </div>
@@ -25,7 +28,7 @@
         </div>
       <% end %>
 
-      <%= link_to blogs_path, class: "block" do %>
+      <%= link_to articles_path, class: "block" do %>
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
           <div class="text-xl font-semibold text-center">BLOG</div>
         </div>
