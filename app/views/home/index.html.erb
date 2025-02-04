@@ -1,61 +1,40 @@
-<%# app/views/home/index.html.erb %>
 <div class="min-h-screen bg-gray-100">
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-center mb-8">
-      <% if user_signed_in? %>
-        ようこそ <%= current_user.name %> さん
-      <% else %>
-        COSchestへようこそ
-      <% end %>
-    </h1>
-    
     <div class="grid grid-cols-2 gap-4 md:grid-cols-3 max-w-3xl mx-auto">
-      <% if user_signed_in? %>
-        <%# ログインユーザー向けのボタン %>
-        <%= link_to costumes_path, class: "block" do %>
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-            <div class="text-xl font-semibold text-center">衣装</div>
-          </div>
-        <% end %>
-
-        <%= link_to wigs_path, class: "block" do %>
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-            <div class="text-xl font-semibold text-center">ウィッグ</div>
-          </div>
-        <% end %>
-
-        <%= link_to contact_lenses_path, class: "block" do %>
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-            <div class="text-xl font-semibold text-center">カラコン</div>
-          </div>
-        <% end %>
-
-        <%= link_to tasks_path, class: "block" do %>
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-            <div class="text-xl font-semibold text-center">やること</div>
-          </div>
-        <% end %>
-      <% else %>
-        <%# 未ログインユーザー向けのメッセージ %>
-        <div class="col-span-3 text-center">
-          <p class="mb-4">衣装・ウィッグ・カラコン管理、タスク管理を使用するには<br>ログインが必要です。</p>
-          <%= link_to "ログイン", new_user_session_path, class: "inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+      <%= link_to costumes_path, class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+          <div class="text-xl font-semibold text-center">衣装</div>
         </div>
       <% end %>
 
-      <%# BLOGボタンは常に表示 %>
-      <%= link_to articles_path, class: "block" do %>
+      <%= link_to wigs_path, class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+          <div class="text-xl font-semibold text-center">ウィッグ</div>
+        </div>
+      <% end %>
+
+      <%= link_to contacts_path, class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+          <div class="text-xl font-semibold text-center">カラコン</div>
+        </div>
+      <% end %>
+
+      <%= link_to tasks_path, class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+          <div class="text-xl font-semibold text-center">やること</div>
+        </div>
+      <% end %>
+
+      <%= link_to blogs_path, class: "block" do %>
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
           <div class="text-xl font-semibold text-center">BLOG</div>
         </div>
       <% end %>
 
-      <% if user_signed_in? %>
-        <%= link_to settings_path, class: "block" do %>
-          <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-            <div class="text-xl font-semibold text-center">設定</div>
-          </div>
-        <% end %>
+      <%= link_to settings_path, class: "block" do %>
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+          <div class="text-xl font-semibold text-center">設定</div>
+        </div>
       <% end %>
     </div>
   </div>
