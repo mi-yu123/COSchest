@@ -1,0 +1,2 @@
+class ContactLens < ApplicationRecord
+end
