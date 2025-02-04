@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_30_023612) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_04_022334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_lenses", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.date "expiration_date"
+    t.integer "quantity"
+    t.text "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "costumes", force: :cascade do |t|
+    t.string "character_name"
+    t.integer "status", default: 0
+    t.string "image"
+    t.text "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -27,5 +54,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_30_023612) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wigs", force: :cascade do |t|
+    t.string "character_name"
+    t.integer "status", default: 0
+    t.string "image"
+    t.text "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 end
