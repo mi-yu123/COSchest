@@ -20,7 +20,7 @@
 
       <!-- ユーザーアイコン -->
       <div class="relative">
-        <button class="bg-gray-600 rounded-full p-2">
+        <button class="bg-white-600 rounded-full p-2">
           <img src="<%= asset_path('default_user_icon.png')  %>" alt="ユーザーアイコン" class="h-8 w-8 rounded-full">
         </button>
       </div>
@@ -31,4 +31,15 @@
       <%= yield %>
     </div>
   </body>
+
+  <footer class="bg-white-800 text-gray py-6">
+  <div class="container mx-auto text-center">
+    <ul class="space-y-4 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-center">
+      <li><a href="#" class="hover:underline">利用規約</a></li>
+      <li><a href="#" class="hover:underline">お問い合わせ</a></li>
+      <li><a href="#" class="hover:underline">プライバシーポリシー</a></li>
+    </ul>
+  </div>
+</footer>
+
 </html>
