@@ -1,12 +1,13 @@
 class CostumesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_costume, only: [:edit, :update, :destroy]
 
   def index
     @costumes = Costume.all
   end
 
   def new
-    @costumes = Costume.new
+    @costume = Costume.new
   end
 
   def create
@@ -19,7 +20,9 @@ class CostumesController < ApplicationController
   end
 
   def edit
-    @costume = Costume.find(params[:id])
+  end
+
+  def update
     if @costume.update(costume_params)
       redirect_to costumes_path, notice: "衣装が更新されました"
     else
@@ -27,7 +30,16 @@ class CostumesController < ApplicationController
     end
   end
 
+  def destroy
+    @costume.destroy
+    redirect_to costumes_path, notice: "衣装が削除されました"
+  end
+
   private
+
+  def set_costume
+    @costume = Costume.find(params[:id])
+  end
 
   def costume_params
     params.require(:costume).permit(:image, :character_name, :status, :memo)
