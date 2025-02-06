@@ -5,10 +5,10 @@
     <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
       <!-- 衣装の画像 -->
       <%= link_to edit_costume_path(costume) do %>
-        <% if costume.image.attached? %>
-          <img src="<%= url_for(costume.image) %>" alt="<%= costume.character_name %>" class="w-full h-56 object-cover">
+        <% if costume.image.present? %>
+          <%= image_tag costume.image.url, alt: costume.character_name, class: "w-full h-56 object-cover" %>
         <% else %>
-          <img src="<%= asset_path('no_image.jpg') %>" alt="画像なし" class="w-full h-56 object-cover">
+          <%= image_tag 'no_image.jpg', alt: "画像なし", class: "w-full h-56 object-cover" %>
         <% end %>
       <% end %>
 

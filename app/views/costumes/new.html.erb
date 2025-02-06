@@ -1,10 +1,15 @@
-<%= form_with model: @costume do |form| %>
+<%= form_with model: @costume, local: true, multipart: true, data: { turbo: false } do |form| %>
   <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-2xl font-semibold text-gray-800 mb-4">衣装の登録</h2>
 
     <div>
       <%= form.label :image, "画像", class: "block text-gray-700" %>
-      <%= form.file_field :image, class: "mt-1 block w-full text-gray-800" %>
+      <%= form.file_field :image, class: "mt-1 block w-full text-gray-800", accept: "image/*" %>
+      <% if @costume.image.present? %>
+        <div class="mt-4">
+          <%= image_tag @costume.image.url, class: "max-w-xs" %>
+        </div>
+      <% end %>
     </div>
 
     <div>
@@ -14,7 +19,7 @@
 
     <div>
       <%= form.label :status, "状態", class: "block text-gray-700" %>
-      <%= form.select :status, options_for_select(Costume.statuses.keys.map { |status| [status.humanize, status] }), { prompt: "状態を選んでください" }, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      <%= form.select :status, options_for_select(Costume.statuses.keys.map { |status| [status.titleize, status] }), { prompt: "状態を選んでください" }, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
     </div>
 
     <div>

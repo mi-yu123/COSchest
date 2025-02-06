@@ -26,7 +26,8 @@ class CostumesController < ApplicationController
     if @costume.update(costume_params)
       redirect_to costumes_path, notice: "衣装が更新されました"
     else
-      render :edit
+      flash.now[:alert] = '更新に失敗しました'
+      render :edit, status: :unprocessable_entity
     end
   end
 
