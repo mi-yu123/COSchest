@@ -1,31 +1,36 @@
-<h1>衣装の登録</h1>
+<%= form_with model: @costume, local: true, multipart: true, data: { turbo: false } do |form| %>
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">衣装の登録</h2>
 
-<%= form_with(model: @costume, local: true) do |form| %>
-  <!-- 衣装画像 -->
-  <div class="mb-4">
-    <%= form.label :image, "画像" %>
-    <%= form.file_field :image, class: "form-control" %>
+    <div>
+      <%= form.label :image, "画像", class: "block text-gray-700" %>
+      <%= form.file_field :image, class: "mt-1 block w-full text-gray-800", accept: "image/*" %>
+      <% if @costume.image.present? %>
+        <div class="mt-4">
+          <%= image_tag @costume.image.url, class: "max-w-xs" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :character_name, "キャラクター名", class: "block text-gray-700" %>
+      <%= form.text_field :character_name, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :status, "状態", class: "block text-gray-700" %>
+      <%= form.select :status, options_for_select(Costume.statuses.keys.map { |status| [status.titleize, status] }), { prompt: "状態を選んでください" }, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :memo, "メモ", class: "block text-gray-700" %>
+      <%= form.text_area :memo, rows: 4, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="mt-6">
+      <%= form.submit "登録する", class: "w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
   </div>
-
-  <!-- キャラクター名 -->
-  <div class="mb-4">
-    <%= form.label :character_name, "キャラクター名" %>
-    <%= form.text_field :character_name, class: "form-control" %>
-  </div>
-
-  <!-- 完成 or 未完成 -->
-  <div class="mb-4">
-    <%= form.label :status, "ステータス" %>
-    <%= form.select :status, Costume.statuses.keys.map { |status| [status.humanize, status] }, class: "form-control" %>
-  </div>
-
-  <!-- メモ -->
-  <div class="mb-4">
-    <%= form.label :memo, "メモ" %>
-    <%= form.text_area :memo, class: "form-control" %>
-  </div>
-
-  <%= form.submit '登録する', class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to '戻る', costumes_path, class: "btn btn-secondary mt-4" %>
+<%= link_to '戻る', costumes_path, class: "mt-4 inline-block text-blue-600 hover:underline" %>

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
 
-  resources :costumes
+  resources :costumes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :wigs
   resources :contactlenses
   resources :tasks
