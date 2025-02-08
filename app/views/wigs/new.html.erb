@@ -1,0 +1,36 @@
+<%= form_with model: @wig, local: true, multipart: true, data: { turbo: false } do |form| %>
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">ウィッグの登録</h2>
+
+    <div>
+      <%= form.label :image, "画像", class: "block text-gray-700" %>
+      <%= form.file_field :image, class: "mt-1 block w-full text-gray-800", accept: "image/*" %>
+      <% if @wig.image.present? %>
+        <div class="mt-4">
+          <%= image_tag @wig.image.url, class: "max-w-xs" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :character_name, "キャラクター名", class: "block text-gray-700" %>
+      <%= form.text_field :character_name, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :status, "状態", class: "block text-gray-700" %>
+      <%= form.select :status, options_for_select(Costume.statuses.keys.map { |status| [status.titleize, status] }), { prompt: "状態を選んでください" }, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div>
+      <%= form.label :memo, "メモ", class: "block text-gray-700" %>
+      <%= form.text_area :memo, rows: 4, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="mt-6">
+      <%= form.submit "登録する", class: "w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to '戻る', wigs_path, class: "mt-4 inline-block text-blue-600 hover:underline" %>

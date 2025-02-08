@@ -1,0 +1,26 @@
+<h1 class="text-3xl font-semibold text-center mb-8">ウィッグ一覧</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <% @wigs.each do |wig| %>
+    <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+      <!-- ウィッグの画像 -->
+      <%= link_to edit_wig_path(wig) do %>
+        <% if wig.image.present? %>
+          <%= image_tag wig.image.url, alt: wig.character_name, class: "w-full h-56 object-cover" %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', alt: "画像なし", class: "w-full h-56 object-cover" %>
+        <% end %>
+      <% end %>
+
+      <!-- キャラクター名 -->
+      <div class="p-4">
+        <%= link_to wig.character_name, edit_wig_path(wig), class: "text-xl font-semibold text-gray-900 hover:text-blue-600" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-8 flex justify-center space-x-4">
+  <%= link_to '新規登録', new_wig_path, class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition" %>
+  <%= link_to '戻る', root_path, class: "px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition" %>
+</div>
