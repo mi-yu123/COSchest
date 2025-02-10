@@ -18,7 +18,7 @@
       </div>
       <!-- 使用期限 -->
       <div class="p-4 text-sm text-gray-600">
-        <p><strong>使用期限:</strong> <%= contact_lens.expiration_date %></p>
+        <p><strong>使用期限:</strong> <%= format_month_year(contact_lens.expiration_date) %></p>
       </div>
     </div>
   <% end %>
