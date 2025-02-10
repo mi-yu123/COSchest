@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :costumes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :wigs
-  resources :contactlenses
+  resources :contact_lenses
   resources :tasks
   resources :articles
   resources :settings
