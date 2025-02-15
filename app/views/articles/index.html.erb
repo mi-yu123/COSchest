@@ -15,10 +15,10 @@
             <%= link_to article_path(article), class: "block hover:shadow-lg transition duration-300" do %>
               <div class="p-6">
                 <h2 class="text-xl font-bold mb-4 text-gray-800">
-                  <%= article.title %>
+                  <%= truncate(article.title, length: 50) %>
                 </h2>
                 <p class="text-gray-600 text-sm mb-4">
-                  <%= truncate(article.content.to_s, length: 100) %>
+                  <%= truncate(strip_tags(article.content.to_s), length: 100) %>
                 </p>
                 <div class="text-sm text-gray-500">
                   <%= article.created_at.strftime("%Y年%m月%d日") %> に投稿
@@ -31,9 +31,16 @@
     <% end %>
   </div>
 
+  <!-- 戻るボタン -->
+  <div class="fixed bottom-8 left-8transform -translate-x-1/2">
+    <%= link_to root_path, class: "bg-gray-500 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-gray-600 transition duration-300" do %>
+      戻る
+    <% end %>
+  </div>
+
   <!-- スクロールしても見える記事作成ボタン -->
   <div class="fixed bottom-8 right-8">
-    <%= link_to new_article_path, class: "bg-blue-600 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300" do %>
+    <%= link_to new_article_path, class: "bg-blue-600 text-white py-3 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300" do %>
       記事を作成
     <% end %>
   </div>
