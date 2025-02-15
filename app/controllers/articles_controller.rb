@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @articles = Article.all
     # プロフィールを作成後にコメントアウトを外す
@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article, notice: "記事を作成しました。"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to @article, notice: "記事を更新しました。"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,11 +48,5 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
-  end
-
-  def authenticate_user!
-    redirect_to new_user_session_path, alert: "ログインしてください。"
-    unless user_signed_in?
-    end
   end
 end
