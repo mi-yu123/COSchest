@@ -1,0 +1,39 @@
+<div class="min-h-screen bg-gray-100 py-8">
+  <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">新しい記事を作成</h1>
+
+    <%= form_with(model: @article, local: true, class: "space-y-6") do |form| %>
+      <% if @article.errors.any? %>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+          <div class="text-red-700 font-medium">
+            <%= pluralize(@article.errors.count, "個") %>のエラーがあります：
+          </div>
+          <ul class="list-disc list-inside">
+            <% @article.errors.full_messages.each do |message| %>
+              <li class="text-red-600"><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="space-y-2">
+        <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
+        <%= form.text_field :title, class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= form.label :content, "本文", class: "block text-gray-700 font-medium", for: "article_content" %>
+        <div data-controller="trix">
+          <%= form.rich_text_area :content, 
+              id: "article_content",
+              class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 min-h-[400px]" %>
+        </div>
+      </div>
+
+      <div class="flex justify-center space-x-4 mt-8">
+        <%= form.submit "投稿する", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200" %>
+        <%= link_to "キャンセル", articles_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200" %>
+      </div>
+    <% end %>
+  </div>
+</div>

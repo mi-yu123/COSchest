@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'actiontext';
+@import 'trix/dist/trix.css';

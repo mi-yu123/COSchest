@@ -34,7 +34,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-rails_csrf_protection'
@@ -46,6 +45,7 @@ gem 'devise'
 gem 'devise-i18n'
 
 gem 'carrierwave'
+gem "image_processing", "~> 1.2"
 gem 'mini_magick'
 
 group :development, :test do
