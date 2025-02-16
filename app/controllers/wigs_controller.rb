@@ -1,9 +1,10 @@
 class WigsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_wig, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @wigs = Wig.all
+    @wigs = current_user.wigs
   end
 
   def new
@@ -12,6 +13,7 @@ class WigsController < ApplicationController
 
   def create
     @wig = Wig.new(wig_params)
+    @wig.user = current_user
     if @wig.save
       redirect_to wigs_path, notice: "ウィッグが登録されました"
     else
@@ -44,5 +46,12 @@ class WigsController < ApplicationController
 
   def wig_params
     params.require(:wig).permit(:image, :character_name, :status, :memo)
+  end
+
+  def ensure_correct_user
+    @wig = Wig.find(params[:id])
+    unless @wig.user == current_user
+      redirect_to wigs_path, alert: "権限がありません"
+    end
   end
 end

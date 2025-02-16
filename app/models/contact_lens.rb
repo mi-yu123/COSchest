@@ -1,5 +1,6 @@
 class ContactLens < ApplicationRecord
   self.table_name = 'contact_lenses'
+  belongs_to :user
   before_save :set_expiration_date_to_beginning_of_month
 
   mount_uploader :image, ImageUploader
