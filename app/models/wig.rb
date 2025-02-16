@@ -1,4 +1,6 @@
 class Wig < ApplicationRecord
+  belongs_to :user
+
   mount_uploader :image, ImageUploader
 
   enum status: { completed: 0, incomplete: 1 }
