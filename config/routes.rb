@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get 'task_selection', to: 'pages#task_selection'
 
+  resources :tasks do
+    member do
+      patch :toggle
+    end
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
   root "home#index"
@@ -22,7 +28,6 @@ Rails.application.routes.draw do
   resources :costumes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :wigs
   resources :contact_lenses
-  resources :tasks
   resources :articles
   resources :settings
 end
