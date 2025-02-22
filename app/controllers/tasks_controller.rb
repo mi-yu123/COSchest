@@ -53,7 +53,11 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path
+  
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("task_#{@task.id}") }
+    end
   end
 
   def toggle

@@ -1,12 +1,48 @@
-<div class="task-item" id="task_<%= task.id %>">
-  <h3 class="text-xl font-semibold"><%= task.title %></h3>
-  <p class="text-gray-500"><%= task.description %></p>
-  <p class="text-sm text-gray-400">期限: <%= task.due_date %></p>
-  <div class="flex gap-2">
-    <% if task.completed? %>
-      <span class="text-green-500">完了</span>
-    <% else %>
-      <span class="text-red-500">未完了</span>
-    <% end %>
+<div class="task-item border p-4 mb-4 rounded-lg shadow" id="task_<%= task.id %>" data-controller="task-toggle" data-task-toggle-task-id-value="<%= task.id %>">
+  <div class="flex justify-between items-start">
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-2">
+        <%= check_box_tag nil, nil, task.completed,
+            class: "h-5 w-5 rounded border-gray-300",
+            data: {
+              task_toggle_target: "checkbox",
+              action: "change->task-toggle#toggle"
+            } %>
+        
+        <h3 class="text-xl font-semibold <%= task.completed ? 'line-through text-gray-500' : '' %>">
+          <%= task.title %>
+        </h3>
+        
+        <span class="px-2 py-1 text-sm rounded-full <%= task.completed ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' %>">
+          <%= task.completed ? '完了' : '未完了' %>
+        </span>
+      </div>
+      
+      <p class="text-gray-600 mb-2"><%= task.description %></p>
+      <p class="text-sm text-gray-500">期限: <%= task.due_date&.strftime("%Y年%m月%d日") %></p>
+    </div>
+
+    <div class="flex gap-2">
+      <%= link_to edit_task_path(task),
+          data: { 
+            controller: "modal",
+            action: "click->modal#open",
+            turbo_frame: "modal"
+          },
+          class: "text-blue-500 hover:text-blue-700" do %>
+        <i class="fas fa-edit"></i> 編集
+      <% end %>
+
+      <%= button_to task_path(task),
+          method: :delete,
+          data: { 
+            turbo_confirm: "本当に削除しますか？",
+            turbo_frame: "tasks"
+          },
+          class: "text-red-500 hover:text-red-700",
+          form: { class: "inline-block" } do %>
+        <i class="fas fa-trash"></i> 削除
+      <% end %>
+    </div>
   </div>
 </div>

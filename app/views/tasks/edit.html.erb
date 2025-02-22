@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="review-modal" data-review-modal-target="backGround" data-action="click->review-modal#closeBackground">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-18 md:w-[450px]" data-review-modal-target="reviewModal">
+      <div class="flex justify-end items-center">
+        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->review-modal#closeModal"></i>
+      </div>
+
+      <%= form_with model: @task, data: { action: "turbo:submit-end->modal#close" }, method: :put do |f| %>
+        <div class="mb-4">
+          <%= f.label :title, "タイトル", class: "block mb-2" %>
+          <%= f.text_field :title, class: "w-full border rounded px-3 py-2" %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :description, "説明", class: "block mb-2" %>
+          <%= f.text_area :description, class: "w-full border rounded px-3 py-2" %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :due_date, "期限", class: "block mb-2" %>
+          <%= f.date_field :due_date, class: "w-full border rounded px-3 py-2" %>
+        </div>
+
+        <div class="flex justify-end gap-2">
+          <%= f.submit "保存", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+        </div>
+      <% end %>     
+    </div>
+  </div>
+<% end %>
