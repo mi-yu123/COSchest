@@ -61,7 +61,6 @@ class TasksController < ApplicationController
   end
 
   def toggle
-    @task = current_user.tasks.find(params[:id])
     @task.update(completed: !@task.completed)
 
     respond_to do |format|

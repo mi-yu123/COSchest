@@ -12,10 +12,6 @@
         <h3 class="text-xl font-semibold <%= task.completed ? 'line-through text-gray-500' : '' %>">
           <%= task.title %>
         </h3>
-        
-        <span class="px-2 py-1 text-sm rounded-full <%= task.completed ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' %>">
-          <%= task.completed ? '完了' : '未完了' %>
-        </span>
       </div>
       
       <p class="text-gray-600 mb-2"><%= task.description %></p>
