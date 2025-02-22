@@ -1,82 +1,8 @@
-<div class="min-h-screen bg-gray-100">
-  <div class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">ToDo リスト</h1>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-                onclick="document.getElementById('new-task-modal').classList.remove('hidden')">
-          新規タスク作成
-        </button>
-      </div>
+<div class="container mx-auto px-4">
+  <h1 class="text-2xl font-bold mb-4">タスク一覧</h1>
+  <%= link_to "新規タスク作成", new_task_path, class: "bg-blue-500 text-white px-4 py-2 rounded", data: { turbo_frame: 'modal' } %>
 
-      <!-- タスク一覧 -->
-      <div class="bg-white rounded-lg shadow p-6">
-        <% @tasks.each do |task| %>
-          <div class="flex items-center justify-between py-3 border-b last:border-0">
-            <div class="flex items-center space-x-3">
-              <%= button_to toggle_task_path(task), method: :patch, class: "flex items-center" do %>
-                <div class="w-6 h-6 border-2 rounded-full <%= task.completed? ? 'bg-green-500 border-green-500' : 'border-gray-400' %>"></div>
-              <% end %>
-              <div class="<%= task.completed? ? 'line-through text-gray-500' : '' %>">
-                <div class="font-medium"><%= task.title %></div>
-                <div class="text-sm text-gray-600"><%= task.description %></div>
-                <% if task.due_date %>
-                  <div class="text-sm text-gray-500">期限: <%= task.due_date.strftime("%Y/%m/%d %H:%M") %></div>
-                <% end %>
-              </div>
-            </div>
-            <div class="flex space-x-2">
-              <button onclick="openEditModal('<%= task.id %>')" class="text-blue-500">
-                <i class="fas fa-edit"></i>
-              </button>
-              <%= button_to task_path(task), method: :delete, class: "text-red-500", data: { confirm: "本当に削除しますか？" } do %>
-                <i class="fas fa-trash"></i>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <!-- 戻るボタン -->
-      <div class="mt-8 text-center">
-        <%= link_to task_selection_path, class: "inline-block bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300" do %>
-          <i class="fas fa-arrow-left mr-2"></i>戻る
-        <% end %>
-      </div>
-
-      <!-- 新規タスク作成モーダル -->
-      <div id="new-task-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-          <div class="mt-3">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">新規タスク作成</h3>
-            <%= form_with(model: @task, local: true) do |f| %>
-              <div class="mb-4">
-                <%= f.label :title, "タイトル", class: "block text-sm font-medium text-gray-700" %>
-                <%= f.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-              </div>
-
-              <div class="mb-4">
-                <%= f.label :description, "詳細", class: "block text-sm font-medium text-gray-700" %>
-                <%= f.text_area :description, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-              </div>
-
-              <div class="mb-4">
-                <%= f.label :due_date, "期限", class: "block text-sm font-medium text-gray-700" %>
-                <%= f.datetime_field :due_date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-              </div>
-
-              <div class="flex justify-end space-x-2">
-                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded-lg"
-                        onclick="document.getElementById('new-task-modal').classList.add('hidden')">
-                  キャンセル
-                </button>
-                <%= f.submit "作成", class: "bg-blue-500 text-white px-4 py-2 rounded-lg" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <div id="tasks" class="task-list">
+    <%= render @tasks %>
   </div>
 </div>

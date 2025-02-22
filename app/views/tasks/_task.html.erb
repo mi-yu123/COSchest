@@ -1,0 +1,12 @@
+<div class="task-item" id="task_<%= task.id %>">
+  <h3 class="text-xl font-semibold"><%= task.title %></h3>
+  <p class="text-gray-500"><%= task.description %></p>
+  <p class="text-sm text-gray-400">期限: <%= task.due_date %></p>
+  <div class="flex gap-2">
+    <% if task.completed? %>
+      <span class="text-green-500">完了</span>
+    <% else %>
+      <span class="text-red-500">未完了</span>
+    <% end %>
+  </div>
+</div>
