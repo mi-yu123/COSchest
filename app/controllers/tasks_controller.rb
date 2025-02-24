@@ -3,12 +3,16 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy, :toggle]
 
   def index
-    @tasks = current_user.tasks.order(due_date: :asc)
+    @tasks = current_user.tasks.order(completed: :asc, due_date: :asc)
     @task = Task.new
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -19,19 +23,25 @@ class TasksController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.append('tasks', partial: 'tasks/task', locals: { task: @task }),
-            turbo_stream.replace('modal', '')  # モーダルを閉じる
+            turbo_stream.replace('modal', ''),
           ]
         end
       else
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('task-form', partial: 'tasks/form', locals: { task: @task })
+          render turbo_stream: turbo_stream.replace('modal', 
+            partial: 'tasks/form', 
+            locals: { task: @task }
+          )
         end
       end
     end
   end
 
   def edit
-    render layout: false
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def update
@@ -39,13 +49,16 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("task_#{@task.id}", partial: 'tasks/task', locals: { task: @task }),
-            turbo_stream.replace('modal', '')  # モーダルを閉じる
+            turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task }),
+            turbo_stream.replace('modal', ''),
           ]
         end
       else
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('task-form', partial: 'tasks/form', locals: { task: @task })
+          render turbo_stream: turbo_stream.replace('modal', 
+            partial: 'tasks/form', 
+            locals: { task: @task }
+          )
         end
       end
     end
@@ -53,10 +66,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-  
+
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
       format.html { redirect_to tasks_path }
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("task_#{@task.id}") }
     end
   end
 
@@ -64,7 +77,12 @@ class TasksController < ApplicationController
     @task.update(completed: !@task.completed)
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(@task, 
+          partial: 'tasks/task', 
+          locals: { task: @task }
+        )
+      end
     end
   end
 
@@ -72,6 +90,13 @@ class TasksController < ApplicationController
 
   def set_task
     @task = current_user.tasks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.turbo_stream do
+        format.html { redirect_to tasks_path }
+        format.turbo_stream { head :not_found }
+      end
+    end
   end
 
   def task_params

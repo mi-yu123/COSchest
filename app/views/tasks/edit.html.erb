@@ -1,8 +1,8 @@
 <%= turbo_frame_tag "modal" do %>
-  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="review-modal" data-review-modal-target="backGround" data-action="click->review-modal#closeBackground">
-    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-18 md:w-[450px]" data-review-modal-target="reviewModal">
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-18 md:w-[450px]" data-modal-target="modal">
       <div class="flex justify-end items-center">
-        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->review-modal#closeModal"></i>
+        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>
       </div>
 
       <%= form_with model: @task, data: { action: "turbo:submit-end->modal#close" }, method: :put do |f| %>
@@ -22,6 +22,9 @@
         </div>
 
         <div class="flex justify-end gap-2">
+          <%= link_to "キャンセル", "#", 
+              class: "bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400", 
+              data: { action: "click->modal#closeModal" } %>
           <%= f.submit "保存", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
         </div>
       <% end %>     
