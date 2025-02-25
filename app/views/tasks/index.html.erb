@@ -1,4 +1,8 @@
 <div class="container mx-auto px-4">
+  <div id="flash">
+    <%= render 'shared/flash', message: flash[:success] || flash[:error], type: flash[:success] ? 'success' : 'error' %>
+  </div>
+
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold">タスク一覧</h1>
     <%= link_to new_task_path,
