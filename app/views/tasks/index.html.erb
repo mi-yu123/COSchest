@@ -11,7 +11,9 @@
   <div id="tasks" class="task-list">
     <% if @tasks.any? %>
       <% @tasks.each do |task| %>
-        <%= render 'tasks/task', task: task %>
+        <div id="task_<%= task.id %>" class="task">
+          <%= render partial: 'tasks/task', locals: { task: task } %>
+        </div>
       <% end %>
     <% else %>
       <div class="text-center py-8 text-gray-500">
