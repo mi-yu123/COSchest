@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :contact_lenses, class_name: 'ContactLens', dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :packing_lists, dependent: :destroy
 end

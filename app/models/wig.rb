@@ -1,5 +1,6 @@
 class Wig < ApplicationRecord
   belongs_to :user
+  has_many :packing_lists, as: :itemable, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 
