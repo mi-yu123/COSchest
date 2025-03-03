@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   resources :wigs
   resources :contact_lenses
   resources :articles
+  resources :packing_lists
   resources :settings
 end

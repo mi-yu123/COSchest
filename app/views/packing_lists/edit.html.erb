@@ -1,0 +1,78 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-lg mx-auto">
+    <h1 class="text-2xl font-bold mb-6">持ち物リストの編集</h1>
+
+    <%= form_with(model: @packing_list, local: true) do |f| %>
+      <% if @packing_list.errors.any? %>
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+          <div class="text-red-700">
+            <h2><%= pluralize(@packing_list.errors.count, "error") %> prohibited this item from being saved:</h2>
+            <ul class="list-disc pl-5">
+              <% @packing_list.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= f.label :item, "アイテム名", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.text_field :item, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">関連アイテム（任意）</label>
+        
+        <div class="mb-2">
+          <h3 class="font-medium">衣装</h3>
+          <% @costumes.each do |costume| %>
+            <div class="mt-1">
+              <%= f.radio_button :itemable_type, 'Costume', 
+                  checked: @packing_list.itemable_type == 'Costume' && @packing_list.itemable_id == costume.id,
+                  class: 'mr-2',
+                  data: { id: costume.id },
+                  onclick: "document.getElementById('packing_list_itemable_id').value = '#{costume.id}'" %>
+              <%= label_tag "packing_list_itemable_type_costume_#{costume.id}", costume.character_name %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-2">
+          <h3 class="font-medium">ウィッグ</h3>
+          <% @wigs.each do |wig| %>
+            <div class="mt-1">
+              <%= f.radio_button :itemable_type, 'Wig',
+                  checked: @packing_list.itemable_type == 'Wig' && @packing_list.itemable_id == wig.id,
+                  class: 'mr-2',
+                  data: { id: wig.id },
+                  onclick: "document.getElementById('packing_list_itemable_id').value = '#{wig.id}'" %>
+              <%= label_tag "packing_list_itemable_type_wig_#{wig.id}", wig.character_name %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-2">
+          <h3 class="font-medium">カラコン</h3>
+          <% @contact_lenses.each do |lens| %>
+            <div class="mt-1">
+              <%= f.radio_button :itemable_type, 'ContactLens',
+                  checked: @packing_list.itemable_type == 'ContactLens' && @packing_list.itemable_id == lens.id,
+                  class: 'mr-2',
+                  data: { id: lens.id },
+                  onclick: "document.getElementById('packing_list_itemable_id').value = '#{lens.id}'" %>
+              <%= label_tag "packing_list_itemable_type_contact_lens_#{lens.id}", lens.name %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= f.hidden_field :itemable_id %>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <%= f.submit "更新する", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        <%= link_to "戻る", packing_lists_path, class: "text-gray-600 hover:text-gray-800" %>
+      </div>
+    <% end %>
+  </div>
+</div>
