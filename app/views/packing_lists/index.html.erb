@@ -1,6 +1,7 @@
 <div class="container mx-auto px-4 py-8">
+  <!-- ページタイトルとアイテム追加ボタン -->
   <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold">持ち物リスト</h1>
+    <h1 class="text-2xl font-bold text-gray-800">持ち物リスト</h1>
     <%= link_to new_packing_list_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" do %>
       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -9,10 +10,12 @@
     <% end %>
   </div>
 
+  <!-- アイテムリスト -->
   <div class="bg-white shadow rounded-lg">
     <% @packing_lists.each do |list| %>
-      <div class="border-b p-4 flex items-center justify-between hover:bg-gray-50">
+      <div class="border-b p-4 flex items-center justify-between hover:bg-gray-50 transition duration-200">
         <div class="flex items-center space-x-4">
+          <!-- チェックボックス -->
           <%= form_with(model: list, local: true, class: "flex items-center") do |f| %>
             <%= f.check_box :packed,
                 class: "h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500",
@@ -20,14 +23,16 @@
           <% end %>
           
           <div class="ml-3">
+            <!-- アイテム名 -->
             <div class="flex items-center">
               <span class="<%= list.packed ? 'line-through text-gray-500' : 'text-gray-900' %> font-medium">
-                <%= list.item.present? ? list.item : "未設定" %>
+                <%= list.item.present? ? list.item : "" %>
               </span>
             </div>
             
+            <!-- 関連アイテム情報 -->
             <% if list.itemable.present? %>
-              <div class="text-sm text-gray-500">
+              <div class="text-sm <%= list.packed ? 'line-through text-gray-500' : 'text-gray-900' %>">
                 <%= case list.itemable_type
                     when 'Costume'
                       "衣装: #{list.itemable.character_name}"
@@ -41,8 +46,9 @@
           </div>
         </div>
 
+        <!-- 編集と削除ボタン -->
         <div class="flex items-center space-x-2">
-          <%= link_to edit_packing_list_path(list), class: "text-gray-400 hover:text-gray-500" do %>
+          <%= link_to edit_packing_list_path(list), class: "text-gray-400 hover:text-gray-600 transition-colors duration-200" do %>
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
@@ -50,7 +56,7 @@
 
           <%= button_to packing_list_path(list), 
               method: :delete,
-              class: "text-gray-400 hover:text-red-500",
+              class: "text-gray-400 hover:text-red-500 transition-colors duration-200",
               data: { turbo_confirm: "本当に削除しますか？" } do %>
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -60,11 +66,20 @@
       </div>
     <% end %>
 
+    <!-- アイテムがない場合 -->
     <% if @packing_lists.empty? %>
       <div class="text-center py-8 text-gray-500">
-        <p>アイテムがまだ登録されていません</p>
+        <p class="text-lg">アイテムがまだ登録されていません</p>
         <p class="mt-2">右上の「アイテム追加」から登録を始めましょう</p>
       </div>
     <% end %>
   </div>
+
+  <!-- 戻るボタン -->
+  <div class="text-center mt-6">
+    <%= link_to task_selection_path, class: "inline-block bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-300" do %>
+      <i class="fas fa-arrow-left mr-2"></i>戻る
+    <% end %>
+  </div>
+
 </div>
