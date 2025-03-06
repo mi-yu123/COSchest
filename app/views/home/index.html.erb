@@ -1,42 +1,64 @@
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-white">
   <div class="container mx-auto px-4 py-8">
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 max-w-3xl mx-auto">
-      <%= link_to costumes_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">
-            <i class="fas fa-tshirt"></i> <!-- アイコン -->
-            衣装
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+      
+      <!-- 衣装ボタン -->
+      <%= link_to costumes_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="costume-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-pink-300 rounded-xl">
+            <%= image_tag "icons/costume.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">衣装</span>
           </div>
         </div>
-      <% end %>  
+      <% end %>
 
-      <%= link_to wigs_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">ウィッグ</div>
+      <!-- ウィッグボタン -->
+      <%= link_to wigs_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="wig-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-blue-200 rounded-xl">
+            <%= image_tag "icons/wig.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">ウィッグ</span>
+          </div>
         </div>
       <% end %>
 
-      <%= link_to contact_lenses_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">カラコン</div>
+      <!-- カラコンボタン -->
+      <%= link_to contact_lenses_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="lens-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-orange-200 rounded-xl">
+            <%= image_tag "icons/contactlens.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">カラコン</span>
+          </div>
         </div>
       <% end %>
 
-      <%= link_to task_selection_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">リスト</div>
+      <!-- リストボタン -->
+      <%= link_to task_selection_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="task-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-yellow-200 rounded-xl">
+            <%= image_tag "icons/task.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">リスト</span>
+          </div>
         </div>
       <% end %>
 
-      <%= link_to articles_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">BLOG</div>
+      <!-- BLOGボタン -->
+      <%= link_to articles_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="blog-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-green-200 rounded-xl">
+            <%= image_tag "icons/article.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">BLOG</span>
+          </div>
         </div>
       <% end %>
 
-      <%= link_to settings_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">設定</div>
+      <!-- 設定ボタン -->
+      <%= link_to settings_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="setting-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 border-gray-300 rounded-xl">
+            <%= image_tag "icons/setting.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">設定</span>
+          </div>
         </div>
       <% end %>
     </div>
