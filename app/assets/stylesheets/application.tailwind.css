@@ -3,3 +3,33 @@
 @tailwind utilities;
 @import 'actiontext';
 @import 'trix/dist/trix.css';
+
+@layer components {
+  .costume-card {
+    @apply bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl border border-pink-100;
+  }
+  
+  .button-base {
+    @apply px-8 py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow flex items-center;
+  }
+  
+  .button-back {
+    @apply button-base bg-gray-100 text-gray-600 hover:bg-gray-200;
+  }
+  
+  .button-new {
+    @apply button-base bg-pink-400 text-white hover:bg-pink-500;
+  }
+
+  .form-input-base {
+    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-pink-400 transition-colors duration-200 bg-white shadow-sm;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+
+  .input-wrapper {
+    @apply relative bg-white rounded-lg shadow-sm;
+  }
+}
