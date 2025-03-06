@@ -1,25 +1,32 @@
 <div class="pb-24">
-  <h1 class="text-3xl font-semibold text-center mb-8">カラコン一覧</h1>
+  <h1 class="text-3xl font-semibold text-center mb-8" style="color: rgba(244, 164, 137, 1)">カラコン一覧</h1>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto">
     <% @contact_lenses.each do |contact_lens| %>
-      <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105">
+      <div class="bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl" style="border: 1px solid rgba(244, 164, 137, 0.3)">
         <!-- カラコンの画像 -->
         <%= link_to edit_contact_lense_path(contact_lens) do %>
           <% if contact_lens.image.present? %>
-            <%= image_tag contact_lens.image.url, alt: contact_lens.name, class: "w-full h-56 object-cover" %>
+            <%= image_tag contact_lens.image.url, alt: contact_lens.name, class: "w-full h-64 object-cover" %>
           <% else %>
-            <%= image_tag 'no_image.jpg', alt: "画像なし", class: "w-full h-56 object-cover" %>
+            <div class="w-full h-64 flex items-center justify-center" style="background-color: rgba(244, 164, 137, 0.1)">
+              <svg class="w-16 h-16" style="color: rgba(244, 164, 137, 0.3)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
           <% end %>
         <% end %>
 
-        <!-- カラコンの名前 -->
+        <!-- カラコンの情報 -->
         <div class="p-4">
-          <%= link_to contact_lens.name, edit_contact_lense_path(contact_lens), class: "text-xl font-semibold text-gray-900 hover:text-blue-600" %>
-        </div>
-        <!-- 使用期限 -->
-        <div class="p-4 text-sm text-gray-600">
-          <p><strong>使用期限:</strong> <%= format_month_year(contact_lens.expiration_date) %></p>
+          <%= link_to edit_contact_lense_path(contact_lens), class: "group" do %>
+            <h2 class="text-xl font-medium text-gray-800 group-hover:text-[#F4A489] transition-colors duration-200">
+              <%= contact_lens.name %>
+            </h2>
+            <p class="text-sm text-gray-600 mt-2">
+              <span class="font-medium">使用期限:</span> <%= format_month_year(contact_lens.expiration_date) %>
+            </p>
+          <% end %>
         </div>
       </div>
     <% end %>
@@ -27,9 +34,19 @@
 </div>
 
 <!-- 登録・戻るボタン -->
-<div class="fixed bottom-0 left-0 right-0 bg-white bg-opacity-90 shadow-lg p-4">
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg p-4">
   <div class="max-w-screen-xl mx-auto flex justify-center space-x-4">
-    <%= link_to '戻る', root_path, class: "px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400 transition" %>
-    <%= link_to '新規登録', new_contact_lense_path, class: "px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition" %>
+    <%= link_to root_path, class: "px-8 py-3 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      戻る
+    <% end %>
+    <%= link_to new_contact_lense_path, class: "px-8 py-3 bg-pink-400 text-white rounded-full hover:bg-pink-500 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+      </svg>
+      新規登録
+    <% end %>
   </div>
 </div>
