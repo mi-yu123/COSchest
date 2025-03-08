@@ -1,41 +1,48 @@
 <%= form_with model: @task, data: { controller: "error", action: "turbo:submit-end->modal#close" } do |f| %>
-  <div class="mb-4">
-    <%= f.label :title, "タイトル", class: "block mb-2" %>
-    <%= f.text_field :title, class: "w-full border rounded px-3 py-2", data: { error_target: "input" } %>
+  <div class="mb-6">
+    <%= f.label :title, "タイトル", class: "block text-gray-700 text-sm font-medium mb-2" %>
+    <%= f.text_field :title,
+        class: "w-full border border-red-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-200 focus:border-pink-300 outline-none transition duration-200",
+        data: { error_target: "input" } %>
     
     <% if f.object.errors[:title].any? %>
-      <div class="text-red-500 text-sm">
+      <div class="text-red-500 text-sm mt-1">
         <%= f.object.errors[:title].first %>
       </div>
     <% end %>
   </div>
 
-  <div class="mb-4">
-    <%= f.label :description, "説明", class: "block mb-2" %>
-    <%= f.text_area :description, class: "w-full border rounded px-3 py-2", data: { error_target: "input" } %>
+  <div class="mb-6">
+    <%= f.label :description, "説明", class: "block text-gray-700 text-sm font-medium mb-2" %>
+    <%= f.text_area :description,
+        class: "w-full border border-red-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-pink-200 focus:border-red-300 outline-none transition duration-200 min-h-[100px]",
+        data: { error_target: "input" } %>
     
     <% if f.object.errors[:description].any? %>
-      <div class="text-red-500 text-sm">
+      <div class="text-red-500 text-sm mt-1">
         <%= f.object.errors[:description].first %>
       </div>
     <% end %>
   </div>
 
-  <div class="mb-4">
-    <%= f.label :due_date, "期限", class: "block mb-2" %>
-    <%= f.date_field :due_date, class: "w-full border rounded px-3 py-2", data: { error_target: "input" } %>
+  <div class="mb-6">
+    <%= f.label :due_date, "期限", class: "block text-gray-700 text-sm font-medium mb-2" %>
+    <%= f.date_field :due_date,
+        class: "w-full border border-red-200 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-red-200 focus:border-red-300 outline-none transition duration-200",
+        data: { error_target: "input" } %>
     
     <% if f.object.errors[:due_date].any? %>
-      <div class="text-red-500 text-sm">
+      <div class="text-red-500 text-sm mt-1">
         <%= f.object.errors[:due_date].first %>
       </div>
     <% end %>
   </div>
 
-  <div class="flex justify-end gap-2">
+  <div class="flex justify-end gap-3">
     <%= link_to "キャンセル", "#", 
-        class: "bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400", 
+        class: "px-6 py-2.5 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow flex items-center",
         data: { action: "click->modal#closeModal" } %>
-    <%= f.submit f.object.new_record? ? "作成" : "更新", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+    <%= f.submit f.object.new_record? ? "作成" : "更新",
+        class: "px-6 py-2.5 bg-red-400 text-white rounded-full hover:bg-red-500 transition-all duration-300 shadow-sm hover:shadow" %>
   </div>
 <% end %>

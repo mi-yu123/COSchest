@@ -24,14 +24,12 @@ class TasksController < ApplicationController
           render turbo_stream: [
             turbo_stream.append('tasks', partial: 'tasks/task', locals: { task: @task }),
             turbo_stream.replace('modal', ''),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを作成しました', type: 'success' })
           ]
         end
       else
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクの作成に失敗しました', type: 'error' })
           ]
         end
       end
@@ -52,14 +50,12 @@ class TasksController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace("task_#{@task.id}", partial: 'tasks/task', locals: { task: @task }),
             turbo_stream.replace('modal', ''),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを更新しました', type: 'success' })
           ]
         end
       else
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクの更新に失敗しました', type: 'error' })
           ]
         end
       end
@@ -73,7 +69,6 @@ class TasksController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@task),
-          turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを削除しました', type: 'success' })
         ]
       end
     end
@@ -104,10 +99,7 @@ class TasksController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update('flash', 
-          partial: 'shared/flash',
-          locals: { message: '指定されたタスクが見つかりません', type: 'error' }
-        )
+        render turbo_stream
       end
     end
   end
