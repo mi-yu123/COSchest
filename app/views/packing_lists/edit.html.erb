@@ -1,10 +1,10 @@
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <div class="max-w-lg w-full bg-white p-6 rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">持ち物リストの編集</h1>
+<div class="min-h-screen bg-white py-8 pb-12">
+  <div class="max-w-2xl mx-auto px-4">
+    <h1 class="text-3xl font-semibold text-center mb-8" style="color: rgba(242, 210, 114, 0.75)">持ち物リストの編集</h1>
 
-    <%= form_with(model: @packing_list, local: true) do |f| %>
+    <%= form_with(model: @packing_list, local: true, class: "bg-white shadow-lg rounded-2xl p-6 border", style: "border-color: rgba(242, 210, 114, 0.25)") do |f| %>
       <% if @packing_list.errors.any? %>
-        <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-lg">
           <div class="text-red-700">
             <h2><%= pluralize(@packing_list.errors.count, "error") %> prohibited this item from being saved:</h2>
             <ul class="list-disc pl-5">
@@ -17,76 +17,82 @@
       <% end %>
 
       <!-- アイテム名 -->
-      <div class="mb-4">
+      <div class="mb-6">
         <%= f.label :item, "アイテム名", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= f.text_field :item, class: "shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <%= f.text_field :item, class: "w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 transition-all", style: "focus:ring-color: rgba(242, 210, 114, 0.75); focus:border-color: rgba(242, 210, 114, 0.75)" %>
       </div>
 
       <!-- 関連アイテム -->
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2">関連アイテム（任意）</label>
-        
+      <div class="space-y-6 mb-8">
+        <h3 class="text-lg font-medium text-gray-700">関連アイテム（任意）</h3>
+
         <!-- 衣装 -->
-        <div class="mb-4">
-          <h3 class="font-semibold text-gray-800">衣装</h3>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-medium text-gray-700 mb-3">衣装</h4>
           <div class="space-y-2">
             <% @costumes.each do |costume| %>
-              <div class="flex items-center space-x-3">
+              <label class="flex items-center p-2 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors">
                 <%= f.radio_button :itemable_type, 'Costume', 
                     checked: @packing_list.itemable_type == 'Costume' && @packing_list.itemable_id == costume.id,
-                    class: 'mr-2', 
+                    class: 'mr-3', 
                     data: { id: costume.id },
                     id: "packing_list_itemable_type_costume_#{costume.id}",
                     onclick: "document.getElementById('packing_list_itemable_id').value = '#{costume.id}'" %>
-                <%= label_tag "packing_list_itemable_type_costume_#{costume.id}", costume.character_name, class: 'text-gray-700' %>
-              </div>
+                <span class="text-gray-700"><%= costume.character_name %></span>
+              </label>
             <% end %>
           </div>
         </div>
 
         <!-- ウィッグ -->
-        <div class="mb-4">
-          <h3 class="font-semibold text-gray-800">ウィッグ</h3>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-medium text-gray-700 mb-3">ウィッグ</h4>
           <div class="space-y-2">
             <% @wigs.each do |wig| %>
-              <div class="flex items-center space-x-3">
+              <label class="flex items-center p-2 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors">
                 <%= f.radio_button :itemable_type, 'Wig',
                     checked: @packing_list.itemable_type == 'Wig' && @packing_list.itemable_id == wig.id,
-                    class: 'mr-2', 
+                    class: 'mr-3', 
                     data: { id: wig.id },
                     id: "packing_list_itemable_type_wig_#{wig.id}",
                     onclick: "document.getElementById('packing_list_itemable_id').value = '#{wig.id}'" %>
-                <%= label_tag "packing_list_itemable_type_wig_#{wig.id}", wig.character_name, class: 'text-gray-700' %>
-              </div>
+                <span class="text-gray-700"><%= wig.character_name %></span>
+              </label>
             <% end %>
           </div>
         </div>
 
         <!-- カラコン -->
-        <div class="mb-4">
-          <h3 class="font-semibold text-gray-800">カラコン</h3>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-medium text-gray-700 mb-3">カラコン</h4>
           <div class="space-y-2">
             <% @contact_lenses.each do |lens| %>
-              <div class="flex items-center space-x-3">
+              <label class="flex items-center p-2 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors">
                 <%= f.radio_button :itemable_type, 'ContactLens',
                     checked: @packing_list.itemable_type == 'ContactLens' && @packing_list.itemable_id == lens.id,
-                    class: 'mr-2', 
+                    class: 'mr-3', 
                     data: { id: lens.id },
                     id: "packing_list_itemable_type_contact_lens_#{lens.id}",
                     onclick: "document.getElementById('packing_list_itemable_id').value = '#{lens.id}'" %>
-                <%= label_tag "packing_list_itemable_type_contact_lens_#{lens.id}", lens.name, class: 'text-gray-700' %>
-              </div>
+                <span class="text-gray-700"><%= lens.name %></span>
+              </label>
             <% end %>
           </div>
         </div>
-
-        <%= f.hidden_field :itemable_id %>
       </div>
 
-      <!-- フォームの送信ボタン -->
-      <div class="flex justify-between items-center">
-        <%= f.submit "更新する", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-        <%= link_to "戻る", packing_lists_path, class: "text-gray-600 hover:text-gray-800 text-sm" %>
+      <%= f.hidden_field :itemable_id %>
+
+      <!-- ボタン -->
+      <div class="flex justify-between items-center pt-6 border-t border-gray-200">
+        <%= link_to packing_lists_path, class: "px-8 py-3 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          戻る
+        <% end %>
+
+        <%= f.submit "更新する", class: "px-8 py-3 text-white rounded-full transition-all duration-300 shadow-sm hover:shadow", style: "background-color: rgba(242, 210, 114, 0.75)" %>
       </div>
     <% end %>
   </div>
