@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:edit, :update, :destroy, :toggle]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.order(completed: :asc, due_date: :asc)
+    @tasks = current_user.tasks
     @task = Task.new
   end
 
@@ -24,14 +24,12 @@ class TasksController < ApplicationController
           render turbo_stream: [
             turbo_stream.append('tasks', partial: 'tasks/task', locals: { task: @task }),
             turbo_stream.replace('modal', ''),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを作成しました', type: 'success' })
           ]
         end
       else
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクの作成に失敗しました', type: 'error' })
           ]
         end
       end
@@ -52,16 +50,12 @@ class TasksController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace("task_#{@task.id}", partial: 'tasks/task', locals: { task: @task }),
             turbo_stream.replace('modal', ''),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを更新しました', type: 'success' })
           ]
         end
+        format.html { redirect_to tasks_path }
       else
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
-            turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクの更新に失敗しました', type: 'error' })
-          ]
-        end
+        format.html { render :edit }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("task_#{@task.id}", partial: "tasks/form", locals: { task: @task }) }
       end
     end
   end
@@ -73,25 +67,6 @@ class TasksController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@task),
-          turbo_stream.update('flash', partial: 'shared/flash', locals: { message: 'タスクを削除しました', type: 'success' })
-        ]
-      end
-    end
-  end
-
-  def toggle
-    @task.update(completed: !@task.completed)
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task }),
-          turbo_stream.update('flash', partial: 'shared/flash', 
-            locals: { 
-              message: @task.completed ? 'タスクを完了しました' : 'タスクを未完了に戻しました',
-              type: 'success'
-            }
-          )
         ]
       end
     end
@@ -104,10 +79,7 @@ class TasksController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update('flash', 
-          partial: 'shared/flash',
-          locals: { message: '指定されたタスクが見つかりません', type: 'error' }
-        )
+        render turbo_stream
       end
     end
   end
