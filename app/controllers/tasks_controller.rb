@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:edit, :update, :destroy, :toggle]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks.order(completed: :asc, due_date: :asc)
+    @tasks = current_user.tasks
     @task = Task.new
   end
 
@@ -52,12 +52,10 @@ class TasksController < ApplicationController
             turbo_stream.replace('modal', ''),
           ]
         end
+        format.html { redirect_to tasks_path }
       else
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
-          ]
-        end
+        format.html { render :edit }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("task_#{@task.id}", partial: "tasks/form", locals: { task: @task }) }
       end
     end
   end
@@ -69,24 +67,6 @@ class TasksController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@task),
-        ]
-      end
-    end
-  end
-
-  def toggle
-    @task.update(completed: !@task.completed)
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(@task, partial: 'tasks/task', locals: { task: @task }),
-          turbo_stream.update('flash', partial: 'shared/flash', 
-            locals: { 
-              message: @task.completed ? 'タスクを完了しました' : 'タスクを未完了に戻しました',
-              type: 'success'
-            }
-          )
         ]
       end
     end
