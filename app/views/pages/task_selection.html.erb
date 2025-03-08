@@ -1,29 +1,36 @@
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-white">
   <div class="container mx-auto px-4 py-8">
-    
-    <div class="grid grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
-      <%= link_to tasks_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">
-            <i class="fas fa-tasks mb-2 text-3xl text-blue-500"></i>
-            <div>やること</div>
+    <div class="grid grid-cols-2 gap-6 max-w-3xl mx-auto">
+      
+      <!-- やることボタン -->
+      <%= link_to tasks_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="task-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 rounded-xl" style="border-color: rgb(231,121,117)">
+            <%= image_tag "icons/task.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">やること</span>
           </div>
         </div>
       <% end %>
 
-      <%= link_to packing_lists_path, class: "block" do %>
-        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-          <div class="text-xl font-semibold text-center">
-            <i class="fas fa-suitcase mb-2 text-3xl text-green-500"></i>
-            <div>持ち物</div>
+      <!-- 持ち物ボタン -->
+      <%= link_to packing_lists_path, class: "transform hover:scale-105 transition-transform duration-300" do %>
+        <div class="packing-button">
+          <div class="flex flex-col items-center space-y-3 p-4 border-4 rounded-xl" style="border-color: rgba(242, 210, 114, 0.75)">
+            <%= image_tag "icons/packing.svg", class: "h-12 w-12" %>
+            <span class="text-xl font-medium text-gray-600">持ち物</span>
           </div>
         </div>
       <% end %>
     </div>
 
     <!-- 戻るボタン -->
-    <div class="text-center">
-      <%= link_to '戻る', root_path, class: "inline-block bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition duration-300" %>
+    <div class="text-center mt-8">
+      <%= link_to root_path, class: "inline-flex items-center px-8 py-3 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow" do %>
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        戻る
+      <% end %>
     </div>
   </div>
 </div>
