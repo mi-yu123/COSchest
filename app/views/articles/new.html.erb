@@ -1,39 +1,59 @@
-<div class="min-h-screen bg-gray-100 py-8">
-  <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">新しい記事を作成</h1>
+<div class="min-h-screen bg-gray-50 py-12">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border" style="border-color: rgba(126, 199, 143, 0.3)">
+      <div class="p-8">
+        <h1 class="text-3xl font-bold text-center mb-8" style="color: rgba(126, 199, 143, 0.9)">新しい記事を作成</h1>
 
-    <%= form_with(model: @article, local: true, class: "space-y-6") do |form| %>
-      <% if @article.errors.any? %>
-        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
-          <div class="text-red-700 font-medium">
-            <%= pluralize(@article.errors.count, "個") %>のエラーがあります：
+        <%= form_with(model: @article, local: true, class: "space-y-6") do |form| %>
+          <% if @article.errors.any? %>
+            <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-r-lg">
+              <div class="text-red-700 font-medium">
+                <%= pluralize(@article.errors.count, "個") %>のエラーがあります：
+              </div>
+              <ul class="list-disc list-inside mt-2">
+                <% @article.errors.full_messages.each do |message| %>
+                  <li class="text-red-600 text-sm"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="space-y-2">
+            <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
+            <%= form.text_field :title, 
+                class: "w-full rounded-lg border shadow-sm focus:ring focus:ring-opacity-50 transition duration-200 py-2.5 px-4 text-lg",
+                style: "border-color: rgba(126, 199, 143, 0.3); focus:border-color: rgba(126, 199, 143, 0.9); focus:ring-color: rgba(126, 199, 143, 0.2)" %>
           </div>
-          <ul class="list-disc list-inside">
-            <% @article.errors.full_messages.each do |message| %>
-              <li class="text-red-600"><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
 
-      <div class="space-y-2">
-        <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
-        <%= form.text_field :title, class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200" %>
-      </div>
+          <div class="space-y-2">
+            <%= form.label :content, "本文", class: "block text-gray-700 font-medium", for: "article_content" %>
+            <div data-controller="trix">
+              <%= form.rich_text_area :content, 
+                  id: "article_content",
+                  class: "w-full rounded-lg border shadow-sm focus:ring focus:ring-opacity-50 transition duration-200 min-h-[400px]",
+                  style: "border-color: rgba(126, 199, 143, 0.3); focus:border-color: rgba(126, 199, 143, 0.9); focus:ring-color: rgba(126, 199, 143, 0.2)" %>
+            </div>
+          </div>
 
-      <div class="space-y-2">
-        <%= form.label :content, "本文", class: "block text-gray-700 font-medium", for: "article_content" %>
-        <div data-controller="trix">
-          <%= form.rich_text_area :content, 
-              id: "article_content",
-              class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 min-h-[400px]" %>
-        </div>
-      </div>
+          <div class="border-t mt-8 pt-6" style="border-color: rgba(126, 199, 143, 0.3)">
+            <div class="flex justify-between items-center">
+              <%= link_to articles_path, class: "px-6 py-2.5 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 flex items-center" do %>
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                キャンセル
+              <% end %>
 
-      <div class="flex justify-center space-x-4 mt-8">
-        <%= form.submit "投稿する", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200" %>
-        <%= link_to "キャンセル", articles_path, class: "bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200" %>
+              <%= form.button type: "submit", class: "px-6 py-2.5 rounded-full transition-all duration-300 flex items-center", style: "background-color: rgba(126, 199, 143, 0.9); color: white; hover:background-color: rgba(126, 199, 143, 1)" do %>
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                投稿する
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
