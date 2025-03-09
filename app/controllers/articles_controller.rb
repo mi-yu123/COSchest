@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to root_path, notice: "記事を削除しました。"
+    redirect_to articles_path, notice: "記事を削除しました。"
   end
 
   private
