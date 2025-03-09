@@ -1,9 +1,9 @@
 <div class="pb-24 bg-white">
-  <h1 class="text-3xl font-semibold text-center mb-8" style="color: rgba(242, 210, 114, 0.75)">持ち物リスト</h1>
+<h1 class="text-3xl font-semibold text-center mb-8" style="color: #FFB800">持ち物リスト</h1>
 
   <div class="max-w-3xl mx-auto px-4">
     <!-- リスト -->
-    <div class="bg-white shadow-lg rounded-2xl overflow-hidden border mb-4" style="border-color: rgba(242, 210, 114, 0.25)">
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden border mb-4" style="border-color: rgba(255, 184, 0, 0.25)">
       <ul class="divide-y divide-gray-200">
         <% @packing_lists.each do |list| %>
           <li class="hover:bg-gray-50 transition-colors duration-200">
@@ -14,7 +14,7 @@
                   <div class="mr-4">
                     <%= f.check_box :packed,
                         class: "h-6 w-6 rounded border-gray-300 focus:ring-2 cursor-pointer",
-                        style: "color: rgba(242, 210, 114, 0.75)",
+                        style: "color: #FFB800",
                         onchange: 'this.form.submit()' %>
                   </div>
                 <% end %>
@@ -83,7 +83,7 @@
       </svg>
       戻る
     <% end %>
-    <%= link_to new_packing_list_path, class: "px-8 py-3 text-white rounded-full transition-all duration-300 shadow-sm hover:shadow flex items-center", style: "background-color: rgba(242, 210, 114, 0.75)" do %>
+    <%= link_to new_packing_list_path, class: "px-8 py-3 bg-[#FFB800] text-white rounded-full hover:bg-[#FFA500] transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
       <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
       </svg>
