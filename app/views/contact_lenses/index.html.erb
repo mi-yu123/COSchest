@@ -7,7 +7,7 @@
         <!-- カラコンの画像 -->
         <%= link_to edit_contact_lense_path(contact_lens) do %>
           <% if contact_lens.image.present? %>
-            <%= image_tag contact_lens.image.url, alt: contact_lens.name, class: "w-full h-64 object-cover" %>
+            <%= image_tag contact_lens.image, alt: contact_lens.name, class: "w-full h-64 object-cover" %>
           <% else %>
             <div class="w-full h-64 flex items-center justify-center" style="background-color: rgba(244, 164, 137, 0.1)">
               <svg class="w-16 h-16" style="color: rgba(244, 164, 137, 0.3)" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

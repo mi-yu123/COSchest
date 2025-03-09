@@ -7,7 +7,7 @@
         <!-- ウィッグの画像 -->
         <%= link_to edit_wig_path(wig) do %>
           <% if wig.image.present? %>
-            <%= image_tag wig.image.url, alt: wig.character_name, class: "w-full h-64 object-cover" %>
+            <%= image_tag wig.image, alt: wig.character_name, class: "w-full h-64 object-cover" %>
           <% else %>
             <div class="w-full h-64 bg-blue-50 flex items-center justify-center">
               <svg class="w-16 h-16 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
