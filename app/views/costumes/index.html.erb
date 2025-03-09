@@ -7,7 +7,7 @@
         <!-- 衣装の画像 -->
         <%= link_to edit_costume_path(costume) do %>
           <% if costume.image.present? %>
-            <%= image_tag costume.image.url, alt: costume.character_name, class: "w-full h-64 object-cover" %>
+            <%= image_tag costume.image, alt: costume.character_name, class: "w-full h-64 object-cover" %>
           <% else %>
             <div class="w-full h-64 bg-pink-50 flex items-center justify-center">
               <svg class="w-16 h-16 text-pink-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
