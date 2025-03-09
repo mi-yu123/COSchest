@@ -1,8 +1,8 @@
 <div class="min-h-screen bg-white py-8 pb-12">
   <div class="max-w-2xl mx-auto px-4">
-    <h1 class="text-3xl font-semibold text-center mb-8" style="color: rgba(242, 210, 114, 0.75)">アイテム登録</h1>
+    <h1 class="text-3xl font-semibold text-center mb-8" style="color: #FFB800">アイテム登録</h1>
 
-    <%= form_with(model: @packing_list, local: true, class: "bg-white shadow-lg rounded-2xl p-6 border", style: "border-color: rgba(242, 210, 114, 0.25)") do |f| %>
+    <%= form_with(model: @packing_list, local: true, class: "bg-white shadow-lg rounded-2xl p-6 border", style: "border-color: rgba(255, 184, 0, 0.25)") do |f| %>
       <% if @packing_list.errors.any? %>
         <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-lg">
           <div class="text-red-700">
@@ -89,7 +89,7 @@
           戻る
         <% end %>
 
-        <%= f.submit "登録する", class: "px-8 py-3 text-white rounded-full transition-all duration-300 shadow-sm hover:shadow flex items-center", style: "background-color: rgba(242, 210, 114, 0.75)" %>
+        <%= f.submit "登録する", class: "px-8 py-3 bg-[#FFB800] text-white rounded-full transition-all duration-300 shadow-sm hover:shadow flex items-center", style: "background-color:#FFB800" %>
       </div>
     <% end %>
   </div>
