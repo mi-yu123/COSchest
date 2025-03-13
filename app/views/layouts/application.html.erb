@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for(:title) || "COSchest" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trix@2.0.0/dist/trix.css">
     <script src="https://cdn.jsdelivr.net/npm/trix@2.0.0/dist/trix.js"></script>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', type: "module" %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', after: true, type: "module" %>
   </head>
 
   <body class="bg-white-100">
