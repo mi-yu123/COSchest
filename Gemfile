@@ -34,15 +34,16 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-rails_csrf_protection'
-
-gem 'dotenv-rails'
 
 # ユーザー認証を使うためのgem
 gem 'devise'
 gem 'devise-i18n'
+
+gem 'omniauth'
+gem 'omniauth-twitter2'
+gem 'omniauth-rails_csrf_protection'
+
+gem 'dotenv-rails'
 
 gem "image_processing", "~> 1.2"
 gem 'mini_magick'

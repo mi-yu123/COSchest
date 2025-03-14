@@ -28,7 +28,9 @@
 </div>
 
 <div class="mt-6 text-center">
-  <%= link_to user_twitter_omniauth_authorize_path, class: "w-full p-3 bg-blue-400 text-white rounded-md hover:bg-blue-500" do %>
+  <%= button_to user_twitter2_omniauth_authorize_path, 
+                class: "p-3 bg-blue-400 text-white rounded-md hover:bg-blue-500",
+                data: { turbo: false } do %>
     <i class="fab fa-twitter mr-2"></i> Xアカウントでログイン
   <% end %>
 </div>
