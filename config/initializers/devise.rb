@@ -11,7 +11,7 @@ OmniAuth.config.silence_get_warning = true
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.omniauth :twitter2, ENV['TWITTER_CLIENT_ID'], ENV['TWITTER_CLIENT_SECRET'], 
-                callback_url: "http://localhost:3000/users/auth/twitter2/callback",
+                callback_url: "https://coschest.fly.dev/users/auth/twitter2/callback",
                 scope: "users.read tweet.read",
                 client_options: {
                   authorize_url: 'https://twitter.com/i/oauth2/authorize',
