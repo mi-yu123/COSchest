@@ -1,78 +1,17 @@
-<div class="pb-24 bg-white">
-  <h1 class="text-3xl font-semibold text-center mb-8 text-red-400">タスク一覧</h1>
-
-  <div class="max-w-3xl mx-auto px-4">
-    <!-- リスト -->
-    <div class="bg-white shadow-lg rounded-2xl overflow-hidden border mb-4" style="border-color: rgba(255, 99, 132, 0.25)">
-      <ul class="divide-y divide-gray-200">
-        <% @tasks.each do |task| %>
-          <li class="hover:bg-gray-50 transition-colors duration-200">
-            <div class="p-4 flex items-center justify-between">
-              <!-- チェックボックスとタスク内容 -->
-              <div class="flex items-center flex-1">
-                <%= form_with(model: task, data: { turbo_action: "replace" }, class: "flex items-center") do |f| %>
-                  <div class="mr-4">
-                    <%= f.check_box :completed,
-                        class: "h-6 w-6 rounded border-gray-300 focus:ring-2 cursor-pointer",
-                        style: "color: #FF6384",
-                        onchange: 'this.form.submit()' %>
-                  </div>
-                <% end %>
-
-                <div class="flex-1">
-                  <p class="<%= task.completed ? 'line-through text-gray-400' : 'text-gray-800' %> font-medium text-lg">
-                    <%= task.title %>
-                  </p>
-                  
-                  <% if task.description.present? %>
-                    <p class="text-sm <%= task.completed ? 'line-through text-gray-400' : 'text-gray-600' %>">
-                      <%= task.description %>
-                    </p>
-                  <% end %>
-
-                  <div class="mt-1">
-                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-sm <%= task.completed ? 'bg-gray-100 text-gray-500' : (task.due_date&.past? ? 'bg-red-100 text-red-600' : 'bg-pink-100 text-pink-600') %>">
-                      <i class="far fa-calendar-alt mr-1.5"></i>
-                      <%= task.due_date&.strftime("%Y年%m月%d日") || '期限なし' %>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 編集・削除ボタン -->
-              <div class="flex items-center space-x-2">
-                <%= link_to edit_task_path(task),
-                    data: { turbo_frame: "modal" },
-                    class: "p-2 hover:bg-pink-50 rounded-lg transition-colors duration-200 flex items-center",
-                    title: "編集" do %>
-                  <svg class="h-5 w-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                <% end %>
-
-                <%= button_to task_path(task),
-                    method: :delete,
-                    data: { turbo_confirm: "このタスクを削除してもよろしいですか？", turbo_frame: "_top" },
-                    class: "p-2 hover:bg-red-50 rounded-lg transition-colors duration-200 flex items-center",
-                    title: "削除" do %>
-                  <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                <% end %>
-              </div>
-            </div>
-          </li>
-        <% end %>
-
-        <% if @tasks.empty? %>
-          <li class="text-center py-12 text-gray-500">
-            <p class="text-lg">タスクがありません</p>
-            <p class="mt-2">「新規タスク作成」から追加しましょう</p>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<div id="tasks-container">
+  <div class="bg-white shadow-lg rounded-2xl overflow-hidden border mb-4" style="border-color: rgba(255, 99, 132, 0.25)">
+    <ul class="divide-y divide-gray-200" style="list-style: none; padding: 0; margin: 0;">
+      <%= render @tasks %>
+      
+      <% if @tasks.empty? %>
+        <li class="text-center py-12 text-gray-500">
+          <p class="text-lg">タスクがありません</p>
+          <p class="mt-2">「新規タスク作成」から追加しましょう</p>
+        </li>
+      <% end %>
+    </ul>
   </div>
+</div>
 
   <%= turbo_frame_tag 'modal' %>
 </div>

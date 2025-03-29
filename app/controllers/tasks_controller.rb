@@ -18,21 +18,21 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_params)
 
-    respond_to do |format|
-      if @task.save
+    if @task.save
+      respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.append('tasks', partial: 'tasks/task', locals: { task: @task }),
-            turbo_stream.replace('modal', ''),
-          ]
-        end
-      else
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace('modal', partial: 'tasks/form', locals: { task: @task }),
+            turbo_stream.update("tasks-container",
+              partial: "tasks/task",
+              collection: Task.all,
+              as: :task
+            ),
+            turbo_stream.remove("modal")
           ]
         end
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -48,14 +48,19 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace("task_#{@task.id}", partial: 'tasks/task', locals: { task: @task }),
-            turbo_stream.replace('modal', ''),
+            turbo_stream.replace("task_#{@task.id}",
+              partial: "tasks/task",
+              locals: { task: @task }
+            ),
+            turbo_stream.remove("modal")
           ]
         end
-        format.html { redirect_to tasks_path }
+        format.html { redirect_to tasks_path, notice: 'タスクが更新されました' }
       else
-        format.html { render :edit }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("task_#{@task.id}", partial: "tasks/form", locals: { task: @task }) }
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { 
+          render :edit, status: :unprocessable_entity
+        }
       end
     end
   end

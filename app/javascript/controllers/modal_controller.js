@@ -1,10 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["modal", "backGround"]
+  static targets = ["modal", "backGround", "taskList", "form"]
 
   connect() {
-    // モーダルを表示状態にする
     this.openModal()
   }
 
@@ -12,7 +11,7 @@ export default class extends Controller {
     if (event) {
       event.preventDefault()
     }
-    this.element.remove()
+    this.element.remove() // モーダル要素を完全に削除
   }
 
   closeBackground(event) {
@@ -26,15 +25,9 @@ export default class extends Controller {
     this.backGroundTarget.classList.remove("hidden")
   }
 
-  close(event) {
+  submitEnd(event) {
     if (event.detail.success) {
       this.closeModal()
-    } else {
-      this.showValidationError()
     }
-  }
-
-  showValidationError() {
-    alert("フォームにエラーがあります。もう一度確認してください。")
   }
 }

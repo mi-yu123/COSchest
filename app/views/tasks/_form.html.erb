@@ -1,4 +1,8 @@
-<%= form_with model: @task, data: { controller: "error", action: "turbo:submit-end->modal#close" } do |f| %>
+<%= form_with model: @task, 
+    data: { 
+      controller: "error",
+      action: "turbo:submit-end->modal#submitEnd"
+    } do |f| %>
   <div class="mb-6">
     <%= f.label :title, "タイトル", class: "block text-gray-700 text-sm font-medium mb-2" %>
     <%= f.text_field :title,
