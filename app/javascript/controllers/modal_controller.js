@@ -11,7 +11,7 @@ export default class extends Controller {
     if (event) {
       event.preventDefault()
     }
-    this.element.remove() // モーダル要素を完全に削除
+    this.element.remove()
   }
 
   closeBackground(event) {
