@@ -21,11 +21,11 @@ class TasksController < ApplicationController
     if @task.save
       respond_to do |format|
         format.turbo_stream do
+          @tasks = current_user.tasks.reload
           render turbo_stream: [
             turbo_stream.update("tasks-container",
               partial: "tasks/task",
-              collection: Task.all,
-              as: :task
+              collection: @tasks
             ),
             turbo_stream.remove("modal")
           ]
