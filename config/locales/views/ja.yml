@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      costume:
+        status: 状態
+      wig:
+        status: 状態
+    attributes:
+      costume:
+        status:
+          completed: 完成
+          incomplete: 未完成
+      wig:
+        status:
+          completed: 完成
+          incomplete: 未完成
