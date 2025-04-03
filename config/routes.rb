@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   resources :contact_lenses, except: [:show]
   resources :articles
   resources :packing_lists
-  resources :settings
+  resource :profile, only: [:show, :edit, :update]
 end

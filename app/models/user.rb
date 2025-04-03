@@ -16,4 +16,5 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :packing_lists, dependent: :destroy
+  has_one :profile, dependent: :destroy
 end

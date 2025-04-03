@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_27_003313) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_063620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_27_003313) do
     t.index ["user_id"], name: "index_packing_lists_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "handle_name"
+    t.string "image"
+    t.integer "activity", default: 0
+    t.string "location"
+    t.string "genre"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
@@ -138,6 +151,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_27_003313) do
   add_foreign_key "contact_lenses", "users"
   add_foreign_key "costumes", "users"
   add_foreign_key "packing_lists", "users"
+  add_foreign_key "profiles", "users"
   add_foreign_key "tasks", "users"
   add_foreign_key "wigs", "users"
 end
