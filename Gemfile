@@ -39,6 +39,9 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'devise-i18n'
 
+# 日本語化対応
+gem 'rails-i18n', '~> 7.0'
+
 gem 'omniauth'
 gem 'omniauth-twitter2'
 gem 'omniauth-rails_csrf_protection'

@@ -35,9 +35,9 @@
           <%= form.label :status, "状態", class: "form-label" %>
           <div class="input-wrapper">
             <%= form.select :status, 
-              options_for_select(Costume.statuses.keys.map { |status| [status.titleize, status] }),
+              options_for_select(Costume.statuses.keys.map { |status| [t("activerecord.attributes.costume.status.#{status}"), status] }),
               { prompt: "状態を選択してください" },
-              class: "form-input-base" %>
+              class: "w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent" %>
           </div>
         </div>
 

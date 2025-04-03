@@ -35,7 +35,7 @@
           <%= form.label :status, "状態", class: "block text-gray-700 font-medium mb-2" %>
           <div class="wig-input-wrapper">
             <%= form.select :status, 
-              options_for_select(Wig.statuses.keys.map { |status| [status.titleize, status] }),
+              options_for_select(Wig.statuses.keys.map { |status| [t("activerecord.attributes.wig.status.#{status}"), status] }),
               { prompt: "状態を選択してください" },
               class: "w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" %>
           </div>
