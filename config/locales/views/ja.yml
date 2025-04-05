@@ -5,6 +5,8 @@ ja:
         status: 状態
       wig:
         status: 状態
+      profile:
+        activity: 活動タイプ
     attributes:
       costume:
         status:
@@ -14,3 +16,8 @@ ja:
         status:
           completed: 完成
           incomplete: 未完成
+      profile:
+        activity:
+          no_activity: ー
+          layer: コスプレイヤー
+          camera: カメラマン
