@@ -5,20 +5,24 @@ class Wig < ApplicationRecord
 
   enum status: { completed: 0, incomplete: 1 }
 
-  validate :acceptable_image
+  validate :image_content_type
+  validate :image_size
 
-  private
+    def image_content_type
+      if image.attached? && !image.content_type.in?(%w[image/jpeg image/png])
+        errors.add(:image, 'ファイルの形式はJPEGまたはPNGである必要があります。')
+      end
+    end
 
-  def acceptable_image
+  def image_size
+    if image.attached? && image.byte_size > 5.megabytes
+      errors.add(:image, 'ファイルサイズは5MB以下である必要があります。')
+    end
+  end
+
+  def resize_image
     return unless image.attached?
-
-    unless image.byte_size <= 5.megabyte
-      errors.add(:image, "は5MB以下にしてください")
-    end
-
-    acceptable_types = ["image/jpeg", "image/png"]
-    unless acceptable_types.include?(image.content_type)
-      errors.add(:image, "はjpegまたはpng形式にしてください")
-    end
+    
+    image.variant(resize_to_limit: [800, 800]).processed
   end
 end
