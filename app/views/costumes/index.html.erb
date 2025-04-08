@@ -7,8 +7,8 @@
         <div class="bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl border border-pink-100">
           <!-- 衣装の画像 -->
           <%= link_to edit_costume_path(costume) do %>
-            <% if costume.image.present? %>
-              <%= image_tag costume.image, alt: costume.character_name, class: "w-full h-64 object-cover" %>
+            <% if costume.image.attached? %>
+              <%= image_tag costume.resize_image, alt: costume.character_name, class: "w-full h-64 object-cover" %>
             <% else %>
               <div class="w-full h-64 bg-pink-50 flex items-center justify-center">
                 <svg class="w-16 h-16 text-pink-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
