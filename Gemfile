@@ -39,6 +39,8 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'devise-i18n'
 
+gem 'letter_opener_web', group: :development
+
 # 日本語化対応
 gem 'rails-i18n', '~> 7.0'
 
