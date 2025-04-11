@@ -1,36 +1,53 @@
-<h2 class="text-2xl font-semibold mb-6">ログイン</h2>
+<div class="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-6 text-center">ログイン</h2>
 
-<%= form_with(model: resource, scope: resource_name, url: session_path(resource_name), local: true, data: { turbo: false }) do |f| %>
-  <div class="form-group">
-    <%= f.label :email, class: "block text-gray-700 font-medium" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full p-3 border border-gray-300 rounded-md" %>
-  </div>
+  <%= form_with(model: resource, scope: resource_name, url: session_path(resource_name), local: true, data: { turbo: false }) do |f| %>
+    <div class="mb-4">
+      <%= f.label :email, "メールアドレス", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+          class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :password, class: "block text-gray-700 font-medium" %>
-    <%= f.password_field :password, autocomplete: "current-password", class: "w-full p-3 border border-gray-300 rounded-md" %>
-  </div>
+    <div class="mb-4">
+      <%= f.label :password, "パスワード", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.password_field :password, autocomplete: "current-password",
+          class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="form-group flex items-center">
-      <%= f.check_box :remember_me, class: "mr-2" %>
-      <%= f.label :remember_me, class: "text-gray-700" %>
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-6 flex items-center">
+        <%= f.check_box :remember_me, class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" %>
+        <%= f.label :remember_me, "ログイン状態を保持する", class: "ml-2 block text-sm text-gray-700" %>
+      </div>
+    <% end %>
+
+    <div class="mb-6">
+      <%= f.submit "ログイン",
+          class: "w-full py-3 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-200" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン", class: "w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+  <div class="text-center space-y-4 mb-6">
+    <%= link_to "パスワードをお忘れの方", new_password_path(resource_name),
+        class: "text-blue-600 hover:text-blue-800 underline block" %>
+    <%= link_to "アカウントをお持ちでない方（新規登録）", new_user_registration_path,
+        class: "text-blue-600 hover:text-blue-800 underline block" %>
   </div>
-<% end %>
 
-<div class="mt-6 text-center">
-  <%= link_to "アカウントを作成する", new_user_registration_path, class: "w-full p-3 bg-green-600 text-white rounded-md hover:bg-green-700" %>
-</div>
+  <div class="relative mb-6">
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-center text-sm">
+      <span class="px-2 bg-white text-gray-500">または</span>
+    </div>
+  </div>
 
-<div class="mt-6 text-center">
-  <%= button_to user_twitter2_omniauth_authorize_path, 
-                class: "p-3 bg-blue-400 text-white rounded-md hover:bg-blue-500",
-                data: { turbo: false } do %>
-    <i class="fab fa-twitter mr-2"></i> Xアカウントでログイン
-  <% end %>
+  <div class="flex flex-col space-y-4">
+    <%= button_to user_twitter2_omniauth_authorize_path,
+        class: "w-full py-3 px-4 bg-lime-500 text-white font-medium rounded-md hover:bg-lime-600 transition duration-200 flex items-center justify-center",
+        data: { turbo: false } do %>
+      <i class="fab fa-twitter mr-2"></i> Xアカウントでログイン
+    <% end %>
+  </div>
 </div>
