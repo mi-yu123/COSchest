@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       get 'search', to: 'costumes#search', as: 'search'
     end
   end
-  resources :wigs, except: [:show]
+  resources :wigs, except: [:show] do
+    collection do
+      get 'search', to: 'wigs#search', as: 'search'
+    end
+  end
   resources :contact_lenses, except: [:show]
   resources :articles
   resources :packing_lists

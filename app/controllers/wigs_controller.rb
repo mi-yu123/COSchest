@@ -4,7 +4,8 @@ class WigsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @wigs = current_user.wigs
+    @q = current_user.wigs.ransack(params[:q])
+    @wigs = @q.result(distinct: true)
   end
 
   def new
