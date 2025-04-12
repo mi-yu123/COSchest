@@ -5,14 +5,19 @@ class Costume < ApplicationRecord
 
   enum status: { completed: 0, incomplete: 1 }
 
+
   validate :image_content_type
   validate :image_size
 
-    def image_content_type
-      if image.attached? && !image.content_type.in?(%w[image/jpeg image/png])
-        errors.add(:image, 'ファイルの形式はJPEGまたはPNGである必要があります。')
-      end
+  def self.ransackable_attributes(auth_object = nil)
+    %w[character_name status]
+  end
+
+  def image_content_type
+    if image.attached? && !image.content_type.in?(%w[image/jpeg image/png])
+      errors.add(:image, 'ファイルの形式はJPEGまたはPNGである必要があります。')
     end
+  end
 
   def image_size
     if image.attached? && image.byte_size > 5.megabytes
