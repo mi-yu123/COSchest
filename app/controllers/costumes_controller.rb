@@ -4,7 +4,8 @@ class CostumesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @costumes = current_user.costumes
+    @q = current_user.costumes.ransack(params[:q])
+    @costumes = @q.result(distinct: true)
   end
 
   def new

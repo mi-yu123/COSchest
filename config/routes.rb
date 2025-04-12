@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
 
-  resources :costumes, except: [:show]
+  resources :costumes, except: [:show] do
+    collection do
+      get 'search', to: 'costumes#search', as: 'search'
+    end
+  end
   resources :wigs, except: [:show]
   resources :contact_lenses, except: [:show]
   resources :articles
