@@ -3,9 +3,16 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
-    # プロフィールを作成後にコメントアウトを外す
-    # @articles = Article.includes(:user)
+    @q = Article.ransack(params[:q])
+    @articles = if params[:q].present?
+                  if params[:q]&.dig(:user_id_eq) == current_user.id.to_s
+                    @q.result(distinct: true)
+                  else
+                    @q.result(distinct: true)
+                  end
+                else
+                  Article.all
+                end
   end
 
   def show
