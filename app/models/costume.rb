@@ -13,6 +13,10 @@ class Costume < ApplicationRecord
     %w[character_name status]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   def image_content_type
     if image.attached? && !image.content_type.in?(%w[image/jpeg image/png])
       errors.add(:image, 'ファイルの形式はJPEGまたはPNGである必要があります。')

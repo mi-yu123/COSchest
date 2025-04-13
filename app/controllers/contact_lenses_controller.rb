@@ -4,7 +4,26 @@ class ContactLensesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @contact_lenses = current_user.contact_lenses
+    @q = current_user.contact_lenses.ransack(params[:q])
+    @contact_lenses = @q.result(distinct: true)
+  end
+
+  def search
+    @q = current_user.contact_lenses.ransack(search_params)
+    
+    # 使用期限の完全一致検索
+    if params.dig(:q, :expiration_date_gteq).present?
+      date_str = params[:q][:expiration_date_gteq]
+      @contact_lenses = current_user.contact_lenses
+        .with_expiration_date(date_str)
+        .ransack(name_cont: params.dig(:q, :name_cont))
+        .result(distinct: true)
+    else
+      # 使用期限の条件がない時は通常の検索
+      @contact_lenses = @q.result(distinct: true)
+    end
+
+    render :index
   end
 
   def new
@@ -53,5 +72,9 @@ class ContactLensesController < ApplicationController
     unless @contact_lens.user == current_user
       redirect_to contact_lenses_path, alert: "権限がありません"
     end
+  end
+
+  def search_params
+    params.fetch(:q, {}).permit(:name_cont, :expiration_date_gteq) if params[:q].present?
   end
 end
