@@ -50,6 +50,12 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       get 'search', to: 'articles#search', as: 'search'
+      get :bookmarks
+    end
+
+    member do
+      post :bookmark
+      delete :unbookmark
     end
   end
   resources :packing_lists

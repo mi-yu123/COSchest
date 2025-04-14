@@ -6,6 +6,7 @@ class Article < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [300, 300]
     attachable.variant :large, resize_to_limit: [800, 800]
   end
+  has_many :bookmarks, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
     %w[title user_id]

@@ -1,0 +1,41 @@
+<div class="pb-24 bg-white">
+  <h1 class="text-3xl font-semibold text-center mb-8" style="color: rgba(126, 199, 143, 0.9)">お気に入り記事</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto">
+    <% if @bookmarked_articles.empty? %>
+      <div class="col-span-full text-center text-lg text-gray-500">
+        ブックマークした記事はありません
+      </div>
+    <% else %>
+      <% @bookmarked_articles.each do |article| %>
+        <div class="bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl border" style="border-color: rgba(126, 199, 143, 0.9)">
+          <%= link_to article_path(article) do %>
+            <div class="p-6">
+              <h2 class="text-xl font-medium text-gray-800 transition-colors duration-200">
+                <%= truncate(article.title, length: 50) %>
+              </h2>
+              <p class="text-gray-600 text-sm mt-3">
+                <%= truncate(strip_tags(article.content.to_s), length: 100) %>
+              </p>
+              <div class="text-sm text-gray-500 mt-3">
+                <%= article.created_at.strftime("%Y年%m月%d日") %> に投稿
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<!-- 戻るボタン -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg p-4">
+  <div class="max-w-screen-xl mx-auto flex justify-center">
+    <%= link_to articles_path, class: "px-8 py-3 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      記事一覧に戻る
+    <% end %>
+  </div>
+</div>
