@@ -4,15 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     @q = Article.ransack(params[:q])
-    @articles = if params[:q].present?
-                  if params[:q]&.dig(:user_id_eq) == current_user.id.to_s
-                    @q.result(distinct: true)
-                  else
-                    @q.result(distinct: true)
-                  end
-                else
-                  Article.all
-                end
+    @articles = params[:q].present? ? @q.result(distinct: true) : Article.all
   end
 
   def show
