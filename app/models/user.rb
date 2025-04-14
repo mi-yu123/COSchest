@@ -10,6 +10,18 @@ class User < ApplicationRecord
     end
   end
 
+  def bookmark(article)
+    bookmark_articles << article
+  end
+
+  def unbookmark(article)
+    bookmark_articles.delete(article)
+  end
+
+  def bookmarked?(article)
+    bookmark_articles.include?(article)
+  end
+
   has_many :costumes, dependent: :destroy
   has_many :wigs, dependent: :destroy
   has_many :contact_lenses, class_name: 'ContactLens', dependent: :destroy
@@ -17,4 +29,6 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :packing_lists, dependent: :destroy
   has_one :profile, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_articles, through: :bookmarks, source: :article
 end
