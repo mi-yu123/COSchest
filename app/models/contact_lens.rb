@@ -25,6 +25,13 @@ class ContactLens < ApplicationRecord
     end
   }
 
+  # 使用期限1ヶ月前のカラコンを取得
+  scope :expiring_soon, -> {
+    where('expiration_date BETWEEN ? AND ?',
+      Date.current.beginning_of_month,
+      1.month.from_now.end_of_month)
+  }
+
   def self.ransackable_associations(auth_object = nil)
     []
   end
