@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-white">
   <div class="container mx-auto px-4 py-8">
     <!-- カラコン使用期限通知 -->
-    <% if current_user.contact_lenses.expiring_soon.any? %>
+    <% if user_signed_in? && current_user&.contact_lenses.expiring_soon&.any? %>
       <div class="max-w-4xl mx-auto mb-8">
         <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r">
           <div class="flex items-center">
