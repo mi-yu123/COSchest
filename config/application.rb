@@ -18,7 +18,7 @@ module Myapp
 
     config.action_dispatch.default_headers = {
       "Content-Security-Policy" => "frame-ancestors 'self' https://docs.google.com/; frame-src 'self' https://docs.google.com/",
-      "X-Content-Type-Options" => 'nosniff",
+      "X-Content-Type-Options" => "nosniff",
       "X-XSS-Protection" => "1; mode=block",
       "Referrer-Policy" => "strict-origin-when-cross-origin"
     }
