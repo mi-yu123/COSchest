@@ -37,16 +37,14 @@ RSpec.describe Costume, type: :model do
       end
 
       context 'imageのサイズ' do
+        before do
+          allow_any_instance_of(ActiveStorage::Blob).to receive(:byte_size).and_return(6.megabytes)
+        end
+
         it 'imageのサイズが5MBを超える場合' do
-          before do
-            allow_any_instance_of(ActiveStorage::Blob).to receive(:byte_size).and_return(6.megabytes)
-          end
-  
-          it 'is invalid' do
-            costume = build(:costume, :with_jpeg_image)
-            costume.valid?
-            expect(costume.errors[:image]).to include('ファイルサイズは5MB以下である必要があります。')
-          end
+          costume = build(:costume, :with_jpeg_image)
+          costume.valid?
+          expect(costume.errors[:image]).to include('ファイルサイズは5MB以下である必要があります。')
         end
       end
     end
@@ -74,6 +72,8 @@ RSpec.describe Costume, type: :model do
     end
 
     context 'imageがない場合' do
+      let(:costume) { create(:costume) }
+
       it '何も返さない' do
         expect(costume.resize_image).to be_nil
       end
