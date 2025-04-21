@@ -69,6 +69,14 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+
+  # ActiveStorageのファイルを削除
+  config.after(:each) do
+    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+  end
+
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
 end
 
 # Shoulda Matchersの設定
