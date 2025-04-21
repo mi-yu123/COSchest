@@ -34,6 +34,9 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.before(:each) do
+    I18n.locale = :en
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
@@ -69,6 +72,14 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+
+  # ActiveStorageのファイルを削除
+  config.after(:each) do
+    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+  end
+
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
 end
 
 # Shoulda Matchersの設定
