@@ -8,6 +8,11 @@ class Article < ApplicationRecord
   end
   has_many :bookmarks, dependent: :destroy
 
+  validates :title, presence: true, length: { maximum: 100, message: "は100文字以内で入力してください" }
+
+  validate :content_presence
+  validate :content_length_within_limit
+
   def self.ransackable_attributes(auth_object = nil)
     %w[title user_id]
   end
@@ -16,6 +21,17 @@ class Article < ApplicationRecord
     []
   end
 
-  validates :title, presence: true, length: { maximum: 100, message: "は100文字以内で入力してください" }
-  validates :content, presence: true, length: { maximum: 10000, message: "は10000文字以内で入力してください" }
+  private
+
+  def content_presence
+    if content.blank? || content.to_plain_text.blank?
+      errors.add(:content, "を入力してください")
+    end
+  end
+
+  def content_length_within_limit
+    if content.present? && content.to_plain_text.length > 10_000
+      errors.add(:content, "は10000文字以内で入力してください")
+    end
+  end
 end
