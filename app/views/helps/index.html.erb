@@ -1,0 +1,172 @@
+<div class="max-w-4xl mx-auto py-8">
+  <h1 class="text-3xl font-bold text-yellow-500 mb-8">COSchestの使い方</h1>
+
+  <div class="space-y-6">
+    <!-- 衣装管理の使い方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none" data-controller="accordion" data-action="click->accordion#toggle">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">衣装管理の使い方</h2>
+          <svg class="w-6 h-6 transform transition-transform" data-accordion-target="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="hidden px-6 py-4" data-accordion-target="content">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">① 衣装の登録方法</h3>
+            <ol class="list-decimal list-inside space-y-2">
+              <li>トップページから「衣装」ボタンをクリック</li>
+              <li>「新規登録」ボタンをクリック</li>
+              <li>必要事項を入力（作品名、キャラクター名、画像など）</li>
+              <li>「登録する」ボタンをクリック</li>
+            </ol>
+            <%= image_tag "help/costume_register.png", class: "mt-4 rounded-lg border", alt: "衣装登録画面" if Rails.application.assets.find_asset("help/costume_register.png") %>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">② 衣装の管理方法</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>登録した衣装の編集・削除が可能</li>
+              <li>衣装の状態（クリーニング中、修繕中など）を設定可能</li>
+              <li>タグ付けによる分類が可能</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ウィッグ管理の使い方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none" data-controller="accordion" data-action="click->accordion#toggle">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">ウィッグ管理の使い方</h2>
+          <svg class="w-6 h-6 transform transition-transform" data-accordion-target="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="hidden px-6 py-4" data-accordion-target="content">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">① ウィッグの登録方法</h3>
+            <ol class="list-decimal list-inside space-y-2">
+              <li>トップページから「ウィッグ」ボタンをクリック</li>
+              <li>「新規登録」ボタンをクリック</li>
+              <li>必要事項を入力（色、長さ、スタイルなど）</li>
+              <li>「登録する」ボタンをクリック</li>
+            </ol>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">② ウィッグのお手入れ記録</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>スタイリング方法のメモが可能</li>
+              <li>お手入れ履歴の記録が可能</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カラコン管理の使い方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none" data-controller="accordion" data-action="click->accordion#toggle">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">カラコン管理の使い方</h2>
+          <svg class="w-6 h-6 transform transition-transform" data-accordion-target="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="hidden px-6 py-4" data-accordion-target="content">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">① カラコンの登録と期限管理</h3>
+            <ol class="list-decimal list-inside space-y-2">
+              <li>トップページから「カラコン」ボタンをクリック</li>
+              <li>「新規登録」ボタンをクリック</li>
+              <li>必要事項を入力（商品名、色、使用期限など）</li>
+              <li>「登録する」ボタンをクリック</li>
+            </ol>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">② 期限通知について</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>使用期限が近づくと通知が表示されます</li>
+              <li>期限切れ前に新しいカラコンの購入を検討できます</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- リスト機能の使い方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none" data-controller="accordion" data-action="click->accordion#toggle">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">リスト機能の使い方</h2>
+          <svg class="w-6 h-6 transform transition-transform" data-accordion-target="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="hidden px-6 py-4" data-accordion-target="content">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">① イベント・撮影の予定管理</h3>
+            <ol class="list-decimal list-inside space-y-2">
+              <li>予定の登録方法</li>
+              <li>持ち物リストの作成方法</li>
+              <li>チェックリストの使い方</li>
+            </ol>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">② リストのテンプレート機能</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>よく使うリストをテンプレートとして保存可能</li>
+              <li>テンプレートの編集・削除方法</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG機能の使い方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none" data-controller="accordion" data-action="click->accordion#toggle">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">BLOG機能の使い方</h2>
+          <svg class="w-6 h-6 transform transition-transform" data-accordion-target="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="hidden px-6 py-4" data-accordion-target="content">
+        <div class="space-y-4">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">① 記事の投稿方法</h3>
+            <ol class="list-decimal list-inside space-y-2">
+              <li>「BLOG」ボタンから記事投稿ページへ</li>
+              <li>タイトルと本文を入力</li>
+              <li>画像の追加方法</li>
+              <li>タグの設定方法</li>
+            </ol>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <h3 class="text-lg font-medium text-gray-800 mb-2">② 記事の管理方法</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li>記事の編集・削除方法</li>
+              <li>下書き機能の使い方</li>
+              <li>公開設定の変更方法</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
