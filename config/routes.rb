@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get 'task_selection', to: 'pages#task_selection'
   get 'contact', to: 'contacts#new'
+  get 'help', to: 'helps#index'
 
   resources :tasks do
     member do
