@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'task_selection', to: 'pages#task_selection'
   get 'contact', to: 'contacts#new'
   get 'terms', to: 'terms#new'
+  get 'privacy', to: 'privacy#new'
   get 'help', to: 'helps#index'
 
   resources :tasks do
