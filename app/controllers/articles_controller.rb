@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :bookmarks, :bookmark, :unbookmark]
-  before_action :set_article, only: [:show, :edit, :update, :destroy, :bookmark, :unbookmark]
+  before_action :authenticate_user!,
+only: [ :new, :create, :edit, :update, :destroy, :bookmarks, :bookmark, :unbookmark ]
+  before_action :set_article, only: [ :show, :edit, :update, :destroy, :bookmark, :unbookmark ]
 
   def index
     @q = Article.ransack(params[:q])
@@ -51,8 +52,8 @@ class ArticlesController < ApplicationController
     current_user.bookmark(@article)
     respond_to do |format|
       format.html { redirect_to @article, notice: 'ブックマークしました' }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("bookmark_button_#{@article.id}", 
-                                  partial: 'bookmark_button', 
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("bookmark_button_#{@article.id}",
+                                  partial: 'bookmark_button',
                                   locals: { article: @article }) }
     end
   end
@@ -61,8 +62,8 @@ class ArticlesController < ApplicationController
     current_user.unbookmark(@article)
     respond_to do |format|
       format.html { redirect_to @article, notice: 'ブックマークを解除しました' }
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("bookmark_button_#{@article.id}", 
-                                  partial: 'bookmark_button', 
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("bookmark_button_#{@article.id}",
+                                  partial: 'bookmark_button',
                                   locals: { article: @article }) }
     end
   end

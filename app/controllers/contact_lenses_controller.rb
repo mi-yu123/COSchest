@@ -1,7 +1,7 @@
 class ContactLensesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_contact_lens, only: [:edit, :update, :destroy]
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :set_contact_lens, only: [ :edit, :update, :destroy ]
+  before_action :ensure_correct_user, only: [ :edit, :update, :destroy ]
 
   def index
     @q = current_user.contact_lenses.ransack(params[:q])
@@ -10,7 +10,7 @@ class ContactLensesController < ApplicationController
 
   def search
     @q = current_user.contact_lenses.ransack(search_params)
-    
+
     # 使用期限の完全一致検索
     if params.dig(:q, :expiration_date_gteq).present?
       date_str = params[:q][:expiration_date_gteq]

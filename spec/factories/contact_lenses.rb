@@ -24,7 +24,7 @@ FactoryBot.define do
           content_type: 'image/png'
         )
       end
-    end 
+    end
 
     trait :with_invalid_image do
       after(:build) do |contact_lens|

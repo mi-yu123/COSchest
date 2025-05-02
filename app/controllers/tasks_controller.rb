@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [ :edit, :update, :destroy ]
 
   def index
     @tasks = current_user.tasks
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
         format.html { redirect_to tasks_path, notice: 'タスクが更新されました' }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { 
+        format.turbo_stream {
           render :edit, status: :unprocessable_entity
         }
       end
@@ -71,7 +71,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.remove(@task),
+          turbo_stream.remove(@task)
         ]
       end
     end

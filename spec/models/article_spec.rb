@@ -10,7 +10,7 @@ RSpec.describe Article, type: :model do
     it { is_expected.to have_many(:bookmarks).dependent(:destroy) }
 
     it { is_expected.to validate_presence_of(:title) }
-    it { is_expected.to validate_length_of(:title).is_at_most(100).with_message('は100文字以内で入力してください') }  
+    it { is_expected.to validate_length_of(:title).is_at_most(100).with_message('は100文字以内で入力してください') }
   end
 
   describe 'contentのバリデーション' do
