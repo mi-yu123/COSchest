@@ -1,7 +1,7 @@
 class CostumesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_costume, only: [:edit, :update, :destroy]
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :set_costume, only: [ :edit, :update, :destroy ]
+  before_action :ensure_correct_user, only: [ :edit, :update, :destroy ]
 
   def index
     @q = current_user.costumes.ransack(params[:q])

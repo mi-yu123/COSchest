@@ -2,9 +2,9 @@ class Article < ApplicationRecord
   belongs_to :user
   has_rich_text :content
   has_one_attached :featured_image do |attachable|
-    attachable.variant :thumb, resize_to_limit: [100, 100]
-    attachable.variant :medium, resize_to_limit: [300, 300]
-    attachable.variant :large, resize_to_limit: [800, 800]
+    attachable.variant :thumb, resize_to_limit: [ 100, 100 ]
+    attachable.variant :medium, resize_to_limit: [ 300, 300 ]
+    attachable.variant :large, resize_to_limit: [ 800, 800 ]
   end
   has_many :bookmarks, dependent: :destroy
 

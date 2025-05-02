@@ -15,7 +15,7 @@ class ContactLens < ApplicationRecord
 
   scope :with_expiration_date, ->(date_str) {
     return none unless date_str.present? && date_str.match?(/\A\d{4}-\d{2}\z/)
-    
+
     year, month = date_str.split('-').map(&:to_i)
     begin
       target_date = Date.new(year, month, 1)
@@ -50,15 +50,15 @@ class ContactLens < ApplicationRecord
 
   def resize_image
     return unless image.attached?
-    
-    image.variant(resize_to_limit: [800, 800]).processed
+
+    image.variant(resize_to_limit: [ 800, 800 ]).processed
   end
 
   private
 
   def set_expiration_date_to_beginning_of_month
   return unless expiration_date_before_type_cast.present?
-    
+
     if expiration_date_before_type_cast.is_a?(String)
       year, month = expiration_date_before_type_cast.split('-').map(&:to_i)
       self.expiration_date = Date.new(year, month, 1)

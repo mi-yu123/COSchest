@@ -13,7 +13,7 @@ class PackingListsController < ApplicationController
 
   def create
     @packing_list = current_user.packing_lists.build(packing_list_params)
-  
+
     if @packing_list.save
       redirect_to packing_lists_path, flash: { message: '登録しました' }
     else

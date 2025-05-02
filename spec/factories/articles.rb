@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
     title { Faker::Lorem.sentence }
-    
+
     after(:build) do |article|
       article.content = ActionText::Content.new(Faker::Lorem.paragraph(sentence_count: 3))
     end
