@@ -37,6 +37,11 @@ RSpec.configure do |config|
   config.before(:each) do
     I18n.locale = :ja
   end
+
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')

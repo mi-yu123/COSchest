@@ -35,6 +35,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+  chrome:
+    image: selenium/standalone-chrome
+    platform: linux/amd64
+    ports:
+      - "4444:4444"
 volumes:
   bundle_data:
   postgresql_data:
