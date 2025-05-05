@@ -115,4 +115,4 @@
 
 ## ER図
 
-[![Image from Gyazo](https://i.gyazo.com/1b4a00fac98b6f165a1b7775d0b42613.png)](https://gyazo.com/1b4a00fac98b6f165a1b7775d0b42613)
+[![Image from Gyazo](https://i.gyazo.com/05dfcea8670b061c3edfea59406a3534.png)](https://gyazo.com/05dfcea8670b061c3edfea59406a3534)
