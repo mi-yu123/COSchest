@@ -11,6 +11,10 @@ omniauth_providers: [ :twitter2 ]
     end
   end
 
+  def remember_me
+    true
+  end
+
   def bookmark(article)
     bookmark_articles << article
   end
