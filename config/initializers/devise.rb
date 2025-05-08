@@ -176,8 +176,6 @@ Devise.setup do |config|
   config.remember_for = 2.weeks
   # remember_meを有効にする
   config.extend_remember_period = true
-  # 全てのブラウザでのremember_meを有効にする
-  config.remember_all_browsers = true
   # セッションタイムアウトを2週間に設定
   config.timeout_in = 2.weeks
   # ログアウト時にremember_meを無効にする
