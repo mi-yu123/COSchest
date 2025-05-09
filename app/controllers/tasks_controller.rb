@@ -23,7 +23,7 @@ class TasksController < ApplicationController
         format.turbo_stream do
           @tasks = current_user.tasks.reload
           render turbo_stream: [
-            turbo_stream.update("tasks-container",
+            turbo_stream.update("tasks",
               partial: "tasks/task",
               collection: @tasks
             ),
