@@ -7,6 +7,7 @@ ja:
         status: 状態
       profile:
         activity: 活動タイプ
+      packing_list: 持ち物リスト
     attributes:
       costume:
         status:
@@ -21,7 +22,15 @@ ja:
           no_activity: ー
           layer: コスプレイヤー
           camera: カメラマン
+      packing_list:
+        item: "アイテム名"
+        itemable: "関連アイテム名"
     errors:
       messages:
-        blank: "を入力してください"
+        blank: "この項目を入力してください"
         too_long: "は%{count}文字以内で入力してください"
+      models:
+        packing_list:
+          attributes:
+            base:
+              item_or_itemable_present: "アイテム名を入力、または関連アイテムを選択してください"

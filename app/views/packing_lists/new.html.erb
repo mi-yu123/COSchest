@@ -6,7 +6,7 @@
       <% if @packing_list.errors.any? %>
         <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6 rounded-lg">
           <div class="text-red-700">
-            <h2><%= pluralize(@packing_list.errors.count, "error") %> prohibited this item from being saved:</h2>
+            <h2><%= @packing_list.errors.count %>件のエラーが発生しました</h2>
             <ul class="list-disc pl-5">
               <% @packing_list.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
