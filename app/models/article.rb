@@ -19,7 +19,7 @@ class Article < ApplicationRecord
   def tag_list
     tags.map(&:name).join(',')
   end
-  
+
   def tag_list=(names)
     self.tags = names.split(',').map(&:strip).uniq.map do |name|
       next if name.blank?
