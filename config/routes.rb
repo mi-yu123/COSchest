@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   end
   resources :articles do
     collection do
-      get 'search', to: 'articles#search', as: 'search'
+      get 'search', to: 'articles#index', as: 'search'
       get :bookmarks
     end
 

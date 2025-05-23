@@ -35,6 +35,23 @@
             </div>
           </div>
 
+          <div class="space-y-2">
+            <%= form.label :tag_list, "タグ", class: "block text-gray-700 font-medium" %>
+            <div class="space-y-2">
+              <%= form.text_field :tag_list,
+                  placeholder: "例: 衣装制作, ポージング",
+                  class: "w-full rounded-lg border shadow-sm focus:ring focus:ring-opacity-50 transition duration-200 py-2.5 px-4",
+                  style: "border-color: rgba(126, 199, 143, 0.3); focus:border-color: rgba(126, 199, 143, 0.9); focus:ring-color: rgba(126, 199, 143, 0.2)" %>
+
+              <p class="text-sm text-gray-500">
+                <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                複数のタグは半角カンマ（,）で区切って入力してください
+              </p>
+            </div>
+          </div>
+
           <div class="border-t mt-8 pt-6" style="border-color: rgba(126, 199, 143, 0.3)">
             <div class="flex justify-between items-center">
               <%= link_to articles_path, class: "px-6 py-2.5 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 flex items-center" do %>

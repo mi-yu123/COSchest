@@ -5,7 +5,8 @@ only: [ :new, :create, :edit, :update, :destroy, :bookmarks, :bookmark, :unbookm
 
   def index
     @q = Article.ransack(params[:q])
-    @articles = params[:q].present? ? @q.result(distinct: true) : Article.all
+    @articles = @q.result(distinct: true).includes(:tags, :user).order(created_at: :desc)
+    @tags = Tag.all
   end
 
   def show
@@ -71,7 +72,7 @@ only: [ :new, :create, :edit, :update, :destroy, :bookmarks, :bookmark, :unbookm
   private
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :tag_list)
   end
 
   def set_article
