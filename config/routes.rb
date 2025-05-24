@@ -64,4 +64,5 @@ Rails.application.routes.draw do
   end
   resources :packing_lists
   resource :profile, only: [:show, :edit, :update]
+  resources :my_photos
 end
