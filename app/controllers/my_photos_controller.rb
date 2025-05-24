@@ -1,6 +1,6 @@
 class MyPhotosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_my_photo, only:[:show, :edit, :update, :destroy]
+  before_action :set_my_photo, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @my_photos = current_user.my_photos.order(posted_at: :desc)
