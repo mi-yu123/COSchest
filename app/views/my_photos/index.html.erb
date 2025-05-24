@@ -1,0 +1,53 @@
+<div class="pb-24 bg-white">
+  <h1 class="text-3xl font-semibold text-center mb-8 text-purple-400">マイフォト</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto">
+    <% if @my_photos.any? %>
+      <% @my_photos.each do |my_photo| %>
+        <div class="bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl border border-purple-100">
+          <%= link_to my_photo_path(my_photo) do %>
+            <% if my_photo.image.attached? %>
+              <%= image_tag my_photo.resize_image, alt: my_photo.title, class: "w-full h-64 object-cover" %>
+            <% end %>
+          <% end %>
+
+          <div class="p-4">
+            <%= link_to my_photo_path(my_photo), class: "group" do %>
+              <h2 class="text-xl font-medium text-gray-800 group-hover:text-purple-400 transition-colors duration-200">
+                <%= my_photo.title.presence || "無題" %>
+              </h2>
+              <p class="text-sm text-gray-500 mt-2">
+                <%= l my_photo.posted_at, format: :long %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-span-full text-center py-12 text-gray-500">
+        <div class="bg-white shadow-lg rounded-2xl p-8 border border-purple-100">
+          <p class="text-lg font-medium">まだ写真が登録されていません</p>
+          <p class="mt-2 text-gray-400">「新規登録」から写真を登録しましょう</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- 登録・戻るボタン -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg p-4">
+  <div class="max-w-screen-xl mx-auto flex justify-center space-x-4">
+    <%= link_to root_path, class: "px-8 py-3 bg-gray-100 text-gray-600 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      戻る
+    <% end %>
+    <%= link_to new_my_photo_path, class: "px-8 py-3 bg-purple-400 text-white rounded-full hover:bg-purple-500 transition-all duration-300 shadow-sm hover:shadow flex items-center" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+      </svg>
+      新規登録
+    <% end %>
+  </div>
+</div>

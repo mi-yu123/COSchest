@@ -36,4 +36,5 @@ omniauth_providers: [ :twitter2 ]
   has_one :profile, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_articles, through: :bookmarks, source: :article
+  has_many :my_photos, dependent: :destroy
 end
