@@ -17,15 +17,48 @@
       <div class="accordion-content hidden px-6 py-4 bg-white">
         <div class="space-y-4">
           <h3 class="font-medium text-gray-900">アカウントの作成と管理</h3>
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+            <%= image_tag "help1.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "アカウント管理画面" %>
+          </div>
           <ul class="list-disc list-inside space-y-2 text-gray-600">
             <li>新規登録：メールアドレスとパスワードを入力して作成</li>
-            <li>Xを使用したアカウント作成 : X（旧Twitter）を使用したログインも可能</li>
             <li>ログイン：登録したメールアドレスとパスワードでログイン</li>
             <li>パスワード変更：「パスワードをお忘れですか？」から再設定</li>
           </ul>
         </div>
       </div>
     </div>
+
+    <!-- TOPページの見方 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="accordion-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">TOPページの見方</h2>
+          <svg class="accordion-icon w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+      <div class="accordion-content hidden px-6 py-4 bg-white">
+        <div class="space-y-4">
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+            <%= image_tag "help2.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "TOPページガイド" %>
+          </div>
+          <h3 class="font-medium text-gray-900">各セクションの概要</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600">
+            <li>衣装：衣装の登録・閲覧・編集ができます</li>
+            <li>ウィッグ：ウィッグの登録・閲覧・編集ができます</li>
+            <li>カラコン：カラコンの登録・閲覧・編集ができます</li>
+            <li>リスト：「やること」「持ち物」のリスト作成ができます</li>
+            <li>BLOG：記事の閲覧・作成・編集ができます</li>
+            <li>マイフォト：自分だけのアルバムが作成できます</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
 
     <!-- 衣装・ウィッグ・カラコン管理 -->
     <div class="border rounded-lg overflow-hidden">
@@ -42,14 +75,13 @@
           <h3 class="font-medium text-gray-900 text-lg mb-2">1. 衣装やウィッグ・カラコンを追加する</h3>
           <p class="text-gray-600">画面下部の「＋新規登録」ボタンをタップし、登録画面に進みます。</p>
         </div>
+        <!-- 画像挿入 -->
+        <div class="mb-4">
+        <%= image_tag "help3.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "TOPページガイド" %>
+        </div>
         <div>
           <h3 class="font-medium text-gray-900 text-lg mb-2">2. 情報を入力する</h3>
-          <p class="text-gray-600">以下の項目を入力します（最低１項目入力してください）：</p>
-          <ul class="list-disc list-inside text-gray-600">
-            <li>写真（アイテムの画像）</li>
-            <li>キャラクター名orカラコン名</li>
-            <li>状態（衣装・カラコンのみ）・使用期限と枚数（カラコンのみ）・メモ</li>
-          </ul>
+          <p class="text-gray-600">各項目を入力します（最低１項目入力してください）：</p>
         </div>
         <div>
           <h3 class="font-medium text-gray-900 text-lg mb-2">3. 登録されたアイテムを編集・削除する</h3>
@@ -71,6 +103,10 @@
       <div class="accordion-content hidden px-6 py-4 bg-white">
         <div class="space-y-4">
           <h3 class="font-medium text-gray-900">やることリストの登録・管理方法</h3>
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+          <%= image_tag "help4.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "TOPページガイド" %>
+          </div>
           <ul class="list-disc list-inside space-y-2 text-gray-600">
             <li>「リスト」をタップし、「やること」に進む</li>
             <li>新規登録：「＋新規タスク作成」ボタンからやることを追加</li>
@@ -93,9 +129,13 @@
       <div class="accordion-content hidden px-6 py-4 bg-white">
         <div class="space-y-4">
           <h3 class="font-medium text-gray-900">持ち物リストの登録・管理方法</h3>
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+          <%= image_tag "help5.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "TOPページガイド" %>
+          </div>
           <ul class="list-disc list-inside space-y-2 text-gray-600">
             <li>新規登録：「＋新規登録」ボタンから持ち物を追加</li>
-            <li>詳細情報：アイテム名を記述</li>
+            <li>詳細情報：アイテム名を入力</li>
             <li>所持アイテムの参照：登録済みのアイテムを参照できます</li>
           </ul>
         </div>
@@ -115,15 +155,60 @@
       <div class="accordion-content hidden px-6 py-4 bg-white">
         <div class="space-y-4">
           <h3 class="font-medium text-gray-900">BLOGの閲覧方法</h3>
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+          <%= image_tag "help6.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "TOPページガイド" %>
+          </div>
           <ul class="list-disc list-inside space-y-2 text-gray-600">
             <li>記事一覧：登録済みのブログ記事が表示されます</li>
             <li>詳細情報：記事をタップすると詳細情報が表示されます</li>
+            <li>お気に入り：記事上部のハートマークをタップするとお気に入り登録ができます</li>
           </ul>
           <h3 class="font-medium text-gray-900">BLOGの作成・管理方法</h3>
           <ul class="list-disc list-inside space-y-2 text-gray-600">
             <li>新規作成：「＋新規作成」ボタンから記事の作成</li>
-            <li>タイトル：タイトルの記入</li>
-            <li>詳細：内容の記入（画像の挿入も可能）</li>
+            <li>タイトル：タイトルの入力</li>
+            <li>本文：内容の入力（画像の挿入も可能）</li>
+            <li>タグ：タグ付けができます</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- マイフォト機能 -->
+    <div class="border rounded-lg overflow-hidden">
+      <button class="accordion-toggle w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-700">マイフォトの使い方</h2>
+          <svg class="accordion-icon w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </button>
+    <div class="accordion-content hidden px-6 py-4 bg-white">
+      <div class="space-y-6">
+        <div class="mb-6">
+          <p class="text-gray-600 font-bold text-lg">
+            マイフォトでは、写真を投稿し自分だけのフォトページを作成できます。
+            撮影した写真を簡単に管理し、思い出として残すことができます。
+          </p>
+        </div>
+        <div class="mb-6">
+          <h3 class="font-medium text-gray-900 text-lg mb-2">写真の登録・管理方法</h3>
+          <!-- 画像挿入 -->
+          <div class="mb-4">
+            <%= image_tag "help7.png", class: "rounded-lg shadow-md max-w-full h-auto", alt: "写真登録画面" %>
+          </div>
+          <ul class="list-disc list-inside space-y-2 text-gray-600">
+            <li>写真一覧：登録済みの写真が表示されます</li>
+            <li>詳細情報：写真をタップすると詳細情報が表示されます</li>
+          </ul>
+          <h3 class="font-medium text-gray-900 my-5">マイフォトの作成・管理方法</h3>
+          <ul class="list-disc list-inside space-y-2 text-gray-600">
+            <li>新規作成：「＋新規作成」ボタンから作成</li>
+            <li>写真：撮影した写真をアップロード</li>
+            <li>タイトル：タイトルの入力</li>
+            <li>メモ：自由にお使いください</li>
           </ul>
         </div>
       </div>
