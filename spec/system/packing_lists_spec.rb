@@ -53,7 +53,7 @@ RSpec.describe 'Packing Lists', type: :system do
 
     it 'アイテム名を編集できる' do
       visit edit_packing_list_path(packing_list)
-      
+
       fill_in 'アイテム名', with: '編集後アイテム'
       click_button '更新する'
 
