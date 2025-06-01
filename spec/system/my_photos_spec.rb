@@ -39,11 +39,11 @@ RSpec.describe "My Photos", type: :system do
       it '新規投稿に失敗する' do
         fill_in 'my_photo[title]', with: 'Test Photo'
         fill_in 'my_photo[memo]', with: 'This is a test photo.'
-        
+
         expect {
           click_button '登録する'
         }.not_to change(MyPhoto, :count)
-        
+
         expect(page).to have_content 'この項目を入力してください'
       end
     end
